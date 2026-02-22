@@ -15,6 +15,10 @@
     <!-- HERO SECTION -->
     <header class="hero-section" id="home">
         <div class="hero-content">
+            <div class="hero-actions">
+                <button id="themeToggle" class="icon-btn" type="button" aria-label="Toggle theme">🌙</button>
+                <button id="compactToggle" class="icon-btn" type="button" aria-label="Toggle compact mode">↕</button>
+            </div>
             <div class="hero-title">✦ RAMADAN 1447 AH · INDIA 2026 ✦</div>
             <div class="byline">by <span class="accent-text">Shoyeb Shaikh</span></div>
             <div class="hero-arabic">رَمَضَان مُبَارَك</div>
@@ -32,8 +36,22 @@
                     <span class="hc-roza" id="heroRozaLabel">Loading...</span>
                     <!-- City Selector -->
                     <div class="city-selector-wrapper">
-                        <select id="citySelect" class="city-select-premium"><option value="">Loading...</option></select>
-                        <svg class="city-arrow" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+                        <div class="city-picker-row">
+                        <div class="city-picker" id="cityPicker">
+                            <button class="city-picker__btn" id="cityPickerBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
+                                <span class="city-picker__label">City</span>
+                                <span class="city-picker__value" id="cityPickerValue">Loading...</span>
+                                <span class="city-picker__caret">▾</span>
+                            </button>
+                            <div class="city-picker__panel" id="cityPickerPanel" hidden>
+                                <input class="city-picker__search" id="cityPickerSearch" type="text" placeholder="Search city..." autocomplete="off">
+                                <ul class="city-picker__list" id="cityPickerList" role="listbox" tabindex="-1"></ul>
+                            </div>
+                            <select id="citySelect" class="sr-only"><option value="">Loading...</option></select>
+                        </div>
+                        <button id="geoCityBtn" type="button" class="icon-btn geo-city-btn" aria-label="Use my location">&#128205;</button>
+                        </div>
+                        <div id="geoCityStatus" class="geo-status" aria-live="polite"></div>
                     </div>
                 </div>
                 <div class="h-card">
@@ -118,6 +136,29 @@
                 <div class="form-group"><label>Rate per Person (₹)</label><input type="number" id="fitranaRate" class="form-control" value="120"></div>
                 <div class="calc-result text-center mt-4"><h3>Total Fitrana: <span id="fitranaAmount" class="accent-text">₹120</span></h3></div>
             </div>
+
+            <div class="card premium-card settings-card">
+                <div class="ornament-top">✦ SETTINGS ✦</div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-title">Theme</div>
+                        <div class="settings-sub">Dark / Light</div>
+                    </div>
+                    <button id="themeSwitch" class="switch-btn" type="button" role="switch" aria-checked="true" aria-label="Toggle theme">
+                        <span class="switch-btn__thumb"></span>
+                    </button>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-title">Compact Mode</div>
+                        <div class="settings-sub">Tighter spacing and cards</div>
+                    </div>
+                    <button id="compactSwitch" class="switch-btn" type="button" role="switch" aria-checked="false" aria-label="Toggle compact mode">
+                        <span class="switch-btn__thumb"></span>
+                    </button>
+                </div>
+                <button id="resetDataBtn" class="btn btn-outline w-100 mt-4" type="button">RESET SAVED DATA</button>
+            </div>
         </section>
 
         <!-- #schedule: Full Month Schedule -->
@@ -196,9 +237,6 @@
             <span class="b-label">Sadqa</span>
         </button>
     </nav>
-    
-    <!-- Required for JS compatibility: hidden theme toggle if JS requires it, though app.js expects it to exist -->
-    <button id="themeToggle" style="display:none;"></button>
     
     <script src="assets/js/app.js"></script>
 </body>
