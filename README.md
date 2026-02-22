@@ -8,10 +8,12 @@ A vanilla HTML/CSS/JS Ramadan companion app with city-based timings, ibadah tool
 - Dynamic Ramadan day/date + city schedule rendering from dataset
 - City switching with geolocation-assisted selection
 - Tools: Tasbeeh, Taraweeh tracker, Zakat calculator, Quran progress, Fitrana, Qibla
-- PWA install support with header `Install App` button
-- Offline support after first load (service worker cache)
+- Header install flow with real PWA prompt (`beforeinstallprompt`) on supported browsers
+- iOS fallback install guidance banner (Add to Home Screen instructions)
+- Offline support after first load (service worker app-shell caching)
+- Responsive, centered poster-style layout on desktop
+- Mobile timing visibility safeguards (no clipped Sehri/Iftar/prayer times on small screens)
 - GitHub Pages subpath compatible + localhost compatible
-- Centered, narrow desktop layout (poster-style) with responsive mobile behavior
 
 ## Data Source
 
@@ -22,8 +24,9 @@ A vanilla HTML/CSS/JS Ramadan companion app with city-based timings, ibadah tool
 - `index.html` - App markup and sections
 - `assets/css/styles.css` - Styling, responsive layout, branding
 - `assets/js/app.js` - App logic, timing updates, tools, install prompt handling
-- `manifest.json` - PWA manifest
-- `sw.js` - Service worker (cache-first behavior)
+- `manifest.webmanifest` - PWA manifest
+- `sw.js` - Service worker (app shell + runtime caching)
+- `assets/icons/` - app icons + maskable icons
 
 ## Hosting / Base Path
 
@@ -41,13 +44,15 @@ Supported deployments include:
 
 ## PWA Notes
 
-- Manifest: `manifest.json`
+- Manifest: `manifest.webmanifest`
 - Service worker: `sw.js`
 - Icons:
   - `assets/icons/icon-192.png`
   - `assets/icons/icon-512.png`
+  - `assets/icons/maskable-192.png`
+  - `assets/icons/maskable-512.png`
 
-`Install App` appears when `beforeinstallprompt` is available and hides after install.
+`Install App` appears when `beforeinstallprompt` is available, hides after install, and shows iOS-specific guidance when prompt API is unavailable.
 
 ## Local Run
 
