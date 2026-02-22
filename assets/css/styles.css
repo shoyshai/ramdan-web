@@ -17,6 +17,10 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Leave space for headers if necessary */
+}
 body { 
     font-family: 'EB Garamond', serif; 
     background-color: var(--bg);
@@ -140,6 +144,34 @@ body {
     pointer-events: none;
 }
 
+.city-chips {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.city-chip {
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: system-ui, sans-serif;
+}
+.city-chip.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(110,242,194,0.3);
+}
+
 /* MAIN CONTENT */
 .app-content {
     max-width: 800px;
@@ -223,6 +255,16 @@ body {
 .compass-ring { position: absolute; inset: 0; border: 2px dashed var(--accent); border-radius: 50%; opacity: 0.5; }
 .compass-ring::after { content: "N"; position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-weight: bold; color: var(--accent); }
 .compass-arrow { position: absolute; inset: 20px; transition: transform 0.5s; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
+
+/* MODULES (DUAS & SADQA) */
+.dua-item { padding: 1rem 0; text-align: center; }
+.dua-divider { border: none; border-top: 1px dashed var(--border); margin: 1rem 0; opacity: 0.5; }
+.dua-title { color: var(--accent2); font-size: 1.1rem; margin-bottom: 0.75rem; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+.dua-arabic { font-size: 2rem; color: var(--accent3); margin-bottom: 0.75rem; line-height: 1.5; font-weight: bold; }
+.dua-translit { color: var(--text); font-style: italic; margin-bottom: 0.5rem; font-family: system-ui, sans-serif; font-size: 0.95rem; }
+.dua-meaning { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; }
+
+.sadqa-box { border: 1px solid var(--border); background: rgba(0,0,0,0.2); border-radius: 12px; padding: 1.5rem; }
 
 /* BOTTOM NAV */
 .bottom-nav {

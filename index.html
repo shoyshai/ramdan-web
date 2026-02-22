@@ -30,7 +30,7 @@
                 <div class="h-card hc-center">
                     <span class="hc-icon">🕌</span>
                     <span class="hc-roza" id="heroRozaLabel">Loading...</span>
-                    <!-- City Selector now placed elegantly here -->
+                    <!-- City Selector -->
                     <div class="city-selector-wrapper">
                         <select id="citySelect" class="city-select-premium"><option value="">Loading...</option></select>
                         <svg class="city-arrow" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
@@ -43,69 +43,27 @@
                     <span class="hc-status" id="heroIftarStatus">UPCOMING</span>
                 </div>
             </div>
+            <!-- City Chips / Pills -->
+            <div class="city-chips" id="cityChips"></div>
         </div>
     </header>
 
     <main class="app-content">
-        <!-- SCHEDULE & PRAYER TIMES -->
-        <section id="schedule" class="module-section active">
+        <!-- #home: Today's Timings & Qibla combined for quick access -->
+        <section id="home" class="module-section active">
             <div class="card premium-card text-center mb-4 mt-2 today-card">
                 <div class="ornament-top">✦ TODAY'S TIMINGS ✦</div>
                 <div id="todayDate" class="date-header mb-4">Loading date...</div>
                 
                 <div class="prayer-tiles-grid mt-4">
-                    <div class="p-tile"><span class="p-name">Fajr</span><span class="p-time" id="todayFajr">--:--</span></div>
-                    <div class="p-tile"><span class="p-name">Dhuhr</span><span class="p-time" id="todayDhuhr">--:--</span></div>
-                    <div class="p-tile"><span class="p-name">Asr</span><span class="p-time" id="todayAsr">--:--</span></div>
-                    <div class="p-tile"><span class="p-name">Maghrib</span><span class="p-time" id="todayMaghrib">--:--</span></div>
-                    <div class="p-tile"><span class="p-name">Isha</span><span class="p-time" id="todayIsha">--:--</span></div>
+                    <div class="p-tile"><span class="p-name">Fajr</span><span class="p-time" id="ptFajr">--:--</span></div>
+                    <div class="p-tile"><span class="p-name">Dhuhr</span><span class="p-time" id="ptDhuhr">--:--</span></div>
+                    <div class="p-tile"><span class="p-name">Asr</span><span class="p-time" id="ptAsr">--:--</span></div>
+                    <div class="p-tile"><span class="p-name">Maghrib</span><span class="p-time" id="ptMaghrib">--:--</span></div>
+                    <div class="p-tile"><span class="p-name">Isha</span><span class="p-time" id="ptIsha">--:--</span></div>
                 </div>
             </div>
 
-            <div class="card premium-card">
-                <div class="ornament-top">✦ FULL SCHEDULE ✦</div>
-                <div class="table-responsive">
-                    <table class="schedule-table premium-table">
-                        <thead><tr><th>Day</th><th>Date</th><th>Sehri</th><th>Iftar</th></tr></thead>
-                        <tbody id="scheduleTableBody"></tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- TASBEEH COUNTER -->
-        <section id="tasbeeh" class="module-section">
-            <div class="card premium-card text-center tasbeeh-card">
-                <div class="ornament-top">✦ TASBEEH COUNTER ✦</div>
-                <div class="tasbeeh-display"><span id="tasbeehCount">0</span></div>
-                <div class="tasbeeh-controls">
-                    <button id="btnTasbeehAdd" class="btn btn-accent btn-large">COUNT</button>
-                    <button id="btnTasbeehReset" class="btn btn-outline">RESET</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- TARAWEEH TRACKER -->
-        <section id="taraweeh" class="module-section">
-            <div class="card premium-card">
-                <div class="ornament-top">✦ TARAWEEH TRACKER ✦</div>
-                <p class="text-sm var-text-muted text-center mb-4">Track your 30 Days (20 Rakats daily)</p>
-                <div class="taraweeh-grid" id="taraweehGrid"></div>
-            </div>
-        </section>
-
-        <!-- QURAN TRACKER -->
-        <section id="quran" class="module-section">
-            <div class="card premium-card">
-                <div class="ornament-top">✦ QURAN JUZ TRACKER ✦</div>
-                <div class="progress-container mb-4"><div class="progress-bar" id="quranProgress"></div></div>
-                <p class="text-center mb-4"><span class="accent-text"><span id="quranCompleted">0</span> / 30</span> Juz Completed</p>
-                <div class="juz-grid" id="juzGrid"></div>
-            </div>
-        </section>
-
-        <!-- OTHER TOOLS -->
-        <section id="tools" class="module-section">
             <div class="card premium-card mb-4 qibla-card text-center">
                 <div class="ornament-top">✦ QIBLA DIRECTION ✦</div>
                 <p class="text-sm var-text-muted mb-4" id="qiblaInfo">Select a city to calculate</p>
@@ -116,6 +74,32 @@
                     </div>
                 </div>
                 <button id="btnCurrentLocation" class="btn btn-outline mt-4">Use Current Location</button>
+            </div>
+        </section>
+
+        <!-- #tools: Trackers & Calculators -->
+        <section id="tools" class="module-section">
+            <div class="card premium-card text-center tasbeeh-card">
+                <div class="ornament-top">✦ TASBEEH COUNTER ✦</div>
+                <div class="tasbeeh-display"><span id="tasbeehCount">0</span></div>
+                <div class="tasbeeh-controls">
+                    <button id="btnTasbeehAdd" class="btn btn-accent btn-large">COUNT</button>
+                    <button id="btnTasbeehReset" class="btn btn-outline">RESET</button>
+                </div>
+            </div>
+
+            <div class="card premium-card">
+                <div class="ornament-top">✦ TARAWEEH TRACKER ✦</div>
+                <p class="text-sm var-text-muted text-center mb-4">Track your 30 Days (20 Rakats daily)</p>
+                <!-- Required explicit ID -->
+                <div class="taraweeh-grid" id="taraweehGrid"></div>
+            </div>
+
+            <div class="card premium-card">
+                <div class="ornament-top">✦ QURAN JUZ TRACKER ✦</div>
+                <div class="progress-container mb-4"><div class="progress-bar" id="quranProgress"></div></div>
+                <p class="text-center mb-4"><span class="accent-text"><span id="quranCompleted">0</span> / 30</span> Juz Completed</p>
+                <div class="juz-grid" id="juzGrid"></div>
             </div>
 
             <div class="card premium-card mb-4">
@@ -135,29 +119,81 @@
                 <div class="calc-result text-center mt-4"><h3>Total Fitrana: <span id="fitranaAmount" class="accent-text">₹120</span></h3></div>
             </div>
         </section>
+
+        <!-- #schedule: Full Month Schedule -->
+        <section id="schedule" class="module-section">
+            <div class="card premium-card">
+                <div class="ornament-top">✦ FULL SCHEDULE ✦</div>
+                <div class="table-responsive">
+                    <table class="schedule-table premium-table">
+                        <thead><tr><th>Day</th><th>Date</th><th>Sehri</th><th>Iftar</th></tr></thead>
+                        <!-- Target Hook ID -->
+                        <tbody id="scheduleBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- #duas: Supplications -->
+        <section id="duas" class="module-section">
+            <div class="card premium-card">
+                <div class="ornament-top">✦ DUAS & SUPPLICATIONS ✦</div>
+                
+                <div class="dua-item">
+                    <h3 class="dua-title">Sehri Dua</h3>
+                    <p class="dua-arabic">وَبِصَوْمِ غَدٍ نَّوَيْتُ مِنْ شَهْرِ رَمَضَانَ</p>
+                    <p class="dua-translit">Wa bisawmi ghadinn nawaiytu min shahri ramadan</p>
+                    <p class="dua-meaning">"I intend to keep the fast for tomorrow in the month of Ramadan"</p>
+                </div>
+                <hr class="dua-divider">
+                <div class="dua-item">
+                    <h3 class="dua-title">Iftar Dua</h3>
+                    <p class="dua-arabic">اللَّهُمَّ اِنِّى لَكَ صُمْتُ وَبِكَ امَنْتُ وَعَلَيْكَ تَوَكَّلْتُ وَعَلَى رِزْقِكَ اَفْطَرْتُ</p>
+                    <p class="dua-translit">Allahumma inni laka sumtu wa bika aamantu wa 'alayka tawakkaltu wa 'ala rizq-ika aftartu</p>
+                    <p class="dua-meaning">"O Allah! I fasted for You and I believe in You and I put my trust in You and I break my fast with Your sustenance"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- #sadqa: Charity -->
+        <section id="sadqa" class="module-section">
+            <div class="card premium-card text-center">
+                <div class="ornament-top">✦ DAILY SADQA ✦</div>
+                <p class="var-text-muted text-sm mb-4">"Charity does not decrease wealth."</p>
+                <div class="sadqa-box">
+                    <p class="mb-4">Did you give charity today?</p>
+                    <div class="tasbeeh-controls">
+                        <button id="btnSadqaYes" class="btn btn-accent w-100">YES, ALHAMDULILLAH</button>
+                    </div>
+                    <div class="mt-4 hidden" id="sadqaThanks">
+                        <span class="accent-text">May Allah accept it!</span>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- BOTTOM NAVIGATION -->
+    <!-- BOTTOM NAVIGATION (Targeted IDs) -->
     <nav class="bottom-nav">
-        <button class="b-nav-item active" data-target="schedule">
-            <span class="b-icon">🕌</span>
-            <span class="b-label">Schedule</span>
-        </button>
-        <button class="b-nav-item" data-target="tasbeeh">
-            <span class="b-icon">📿</span>
-            <span class="b-label">Tasbeeh</span>
-        </button>
-        <button class="b-nav-item" data-target="taraweeh">
-            <span class="b-icon">📖</span>
-            <span class="b-label">Taraweeh</span>
-        </button>
-        <button class="b-nav-item" data-target="quran">
-            <span class="b-icon">🕋</span>
-            <span class="b-label">Quran</span>
+        <button class="b-nav-item active" data-target="home">
+            <span class="b-icon">🏠</span>
+            <span class="b-label">Home</span>
         </button>
         <button class="b-nav-item" data-target="tools">
             <span class="b-icon">⚙️</span>
             <span class="b-label">Tools</span>
+        </button>
+        <button class="b-nav-item" data-target="schedule">
+            <span class="b-icon">🕌</span>
+            <span class="b-label">Schedule</span>
+        </button>
+        <button class="b-nav-item" data-target="duas">
+            <span class="b-icon">🤲</span>
+            <span class="b-label">Duas</span>
+        </button>
+        <button class="b-nav-item" data-target="sadqa">
+            <span class="b-icon">💝</span>
+            <span class="b-label">Sadqa</span>
         </button>
     </nav>
     
