@@ -1,38 +1,56 @@
-﻿# Ramadan Web (Parity Build)
+﻿# Ramadan Web
 
-
+A vanilla HTML/CSS/JS Ramadan companion app with city-based timings, ibadah tools, and PWA support.
 
 ## Features
 
-- Multi-section Ramadan app: Home, Tools, Schedule, Duas, Sadqa
-- Dynamic Ramadan day/date and city-based timings
-- Tasbeeh, Taraweeh tracker, Zakat, Quran progress, Fitrana, Qibla
-- Geolocation city detection and city switching
-- Offline support after first load (service worker)
-- Install prompt support (PWA)
-- Works on GitHub Pages subpath and localhost
+- Multi-section app: Home, Tools, Schedule, Duas, Sadqa
+- Dynamic Ramadan day/date + city schedule rendering from dataset
+- City switching with geolocation-assisted selection
+- Tools: Tasbeeh, Taraweeh tracker, Zakat calculator, Quran progress, Fitrana, Qibla
+- PWA install support with header `Install App` button
+- Offline support after first load (service worker cache)
+- GitHub Pages subpath compatible + localhost compatible
+- Centered, narrow desktop layout (poster-style) with responsive mobile behavior
 
-## Data
+## Data Source
 
-- City schedules are loaded from:
-  - `assets/data/ramadan_2026_india.json`
+- `assets/data/ramadan_2026_india.json`
 
-## Paths / Hosting
+## Project Structure
 
-The app auto-detects a base path from the current URL and uses it for:
+- `index.html` - App markup and sections
+- `assets/css/styles.css` - Styling, responsive layout, branding
+- `assets/js/app.js` - App logic, timing updates, tools, install prompt handling
+- `manifest.json` - PWA manifest
+- `sw.js` - Service worker (cache-first behavior)
 
-- JSON data loading
-- Service worker registration
-- Cache scope
+## Hosting / Base Path
 
-So it works at:
+The app derives a base path from the current URL and uses it for:
+
+- data fetch paths
+- service worker registration
+- cache scope behavior
+
+Supported deployments include:
 
 - `https://<user>.github.io/ramadan-web/`
 - `http://localhost/ramadan-web/`
 - `http://localhost/ramdan-web/`
 
-## PWA
+## PWA Notes
 
 - Manifest: `manifest.json`
 - Service worker: `sw.js`
-- Icons: `assets/icons/icon-192.png`, `assets/icons/icon-512.png`
+- Icons:
+  - `assets/icons/icon-192.png`
+  - `assets/icons/icon-512.png`
+
+`Install App` appears when `beforeinstallprompt` is available and hides after install.
+
+## Local Run
+
+Serve from any static server (or XAMPP) and open:
+
+- `http://localhost/ramadan-web/` (or your configured subpath)
