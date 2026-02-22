@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ramadan Utility Dashboard 2026</title>
+    <meta name="theme-color" content="#070b12">
+    <link rel="manifest" id="manifestLink" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+    <!-- Google Fonts for the premium look -->
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="theme-dark">
+    <!-- HERO SECTION -->
+    <header class="hero-section" id="home">
+        <div class="hero-content">
+            <div class="hero-title">✦ RAMADAN 1447 AH · INDIA 2026 ✦</div>
+            <div class="byline">by <span class="accent-text">Shoyeb Shaikh</span></div>
+            <div class="hero-arabic">رَمَضَان مُبَارَك</div>
+            
+            <div class="hero-cards">
+                <div class="h-card">
+                    <span class="hc-icon">🌙</span>
+                    <span class="hc-label">SEHRI ENDS</span>
+                    <span class="hc-time" id="heroSehri">--:--</span>
+                    <span class="hc-status" id="heroSehriStatus">UPCOMING</span>
+                </div>
+                <!-- Center Info Card -->
+                <div class="h-card hc-center">
+                    <span class="hc-icon">🕌</span>
+                    <span class="hc-roza" id="heroRozaLabel">Loading...</span>
+                    <!-- City Selector now placed elegantly here -->
+                    <div class="city-selector-wrapper">
+                        <select id="citySelect" class="city-select-premium"><option value="">Loading...</option></select>
+                        <svg class="city-arrow" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+                    </div>
+                </div>
+                <div class="h-card">
+                    <span class="hc-icon">☀️</span>
+                    <span class="hc-label">IFTAR TIME</span>
+                    <span class="hc-time" id="heroIftar">--:--</span>
+                    <span class="hc-status" id="heroIftarStatus">UPCOMING</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-content">
+        <!-- SCHEDULE & PRAYER TIMES -->
+        <section id="schedule" class="module-section active">
+            <div class="card premium-card text-center mb-4 mt-2 today-card">
+                <div class="ornament-top">✦ TODAY'S TIMINGS ✦</div>
+                <div id="todayDate" class="date-header mb-4">Loading date...</div>
+                
+                <div class="prayer-tiles-grid mt-4">
+                    <div class="p-tile"><span class="p-name">Fajr</span><span class="p-time" id="todayFajr">--:--</span></div>
+                    <div class="p-tile"><span class="p-name">Dhuhr</span><span class="p-time" id="todayDhuhr">--:--</span></div>
+                    <div class="p-tile"><span class="p-name">Asr</span><span class="p-time" id="todayAsr">--:--</span></div>
+                    <div class="p-tile"><span class="p-name">Maghrib</span><span class="p-time" id="todayMaghrib">--:--</span></div>
+                    <div class="p-tile"><span class="p-name">Isha</span><span class="p-time" id="todayIsha">--:--</span></div>
+                </div>
+            </div>
+
+            <div class="card premium-card">
+                <div class="ornament-top">✦ FULL SCHEDULE ✦</div>
+                <div class="table-responsive">
+                    <table class="schedule-table premium-table">
+                        <thead><tr><th>Day</th><th>Date</th><th>Sehri</th><th>Iftar</th></tr></thead>
+                        <tbody id="scheduleTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TASBEEH COUNTER -->
+        <section id="tasbeeh" class="module-section">
+            <div class="card premium-card text-center tasbeeh-card">
+                <div class="ornament-top">✦ TASBEEH COUNTER ✦</div>
+                <div class="tasbeeh-display"><span id="tasbeehCount">0</span></div>
+                <div class="tasbeeh-controls">
+                    <button id="btnTasbeehAdd" class="btn btn-accent btn-large">COUNT</button>
+                    <button id="btnTasbeehReset" class="btn btn-outline">RESET</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TARAWEEH TRACKER -->
+        <section id="taraweeh" class="module-section">
+            <div class="card premium-card">
+                <div class="ornament-top">✦ TARAWEEH TRACKER ✦</div>
+                <p class="text-sm var-text-muted text-center mb-4">Track your 30 Days (20 Rakats daily)</p>
+                <div class="taraweeh-grid" id="taraweehGrid"></div>
+            </div>
+        </section>
+
+        <!-- QURAN TRACKER -->
+        <section id="quran" class="module-section">
+            <div class="card premium-card">
+                <div class="ornament-top">✦ QURAN JUZ TRACKER ✦</div>
+                <div class="progress-container mb-4"><div class="progress-bar" id="quranProgress"></div></div>
+                <p class="text-center mb-4"><span class="accent-text"><span id="quranCompleted">0</span> / 30</span> Juz Completed</p>
+                <div class="juz-grid" id="juzGrid"></div>
+            </div>
+        </section>
+
+        <!-- OTHER TOOLS -->
+        <section id="tools" class="module-section">
+            <div class="card premium-card mb-4 qibla-card text-center">
+                <div class="ornament-top">✦ QIBLA DIRECTION ✦</div>
+                <p class="text-sm var-text-muted mb-4" id="qiblaInfo">Select a city to calculate</p>
+                <div class="compass-container">
+                    <div class="compass-ring"></div>
+                    <div class="compass-arrow" id="compassArrow">
+                        <svg viewBox="0 0 24 24" fill="var(--accent)" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4 20L12 17L20 20L12 2Z"></path></svg>
+                    </div>
+                </div>
+                <button id="btnCurrentLocation" class="btn btn-outline mt-4">Use Current Location</button>
+            </div>
+
+            <div class="card premium-card mb-4">
+                <div class="ornament-top">✦ ZAKAT CALCULATOR ✦</div>
+                <div class="form-group"><label>Cash & Bank Balances (₹)</label><input type="number" id="zakatCash" class="form-control" placeholder="0"></div>
+                <div class="form-group"><label>Gold Value (₹)</label><input type="number" id="zakatGold" class="form-control" placeholder="0"></div>
+                <div class="form-group"><label>Silver Value (₹)</label><input type="number" id="zakatSilver" class="form-control" placeholder="0"></div>
+                <div class="form-group"><label>Liabilities / Debts (₹)</label><input type="number" id="zakatDebts" class="form-control" placeholder="0"></div>
+                <button id="btnCalculateZakat" class="btn btn-accent w-100 mt-2">CALCULATE ZAKAT (2.5%)</button>
+                <div id="zakatResult" class="calc-result mt-4 hidden"><h3>Total Zakat Payable: <span id="zakatAmount" class="accent-text">₹0</span></h3></div>
+            </div>
+
+            <div class="card premium-card">
+                <div class="ornament-top">✦ FITRANA CALCULATOR ✦</div>
+                <div class="form-group"><label>Number of Family Members</label><input type="number" id="fitranaMembers" class="form-control" value="1" min="1"></div>
+                <div class="form-group"><label>Rate per Person (₹)</label><input type="number" id="fitranaRate" class="form-control" value="120"></div>
+                <div class="calc-result text-center mt-4"><h3>Total Fitrana: <span id="fitranaAmount" class="accent-text">₹120</span></h3></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+        <button class="b-nav-item active" data-target="schedule">
+            <span class="b-icon">🕌</span>
+            <span class="b-label">Schedule</span>
+        </button>
+        <button class="b-nav-item" data-target="tasbeeh">
+            <span class="b-icon">📿</span>
+            <span class="b-label">Tasbeeh</span>
+        </button>
+        <button class="b-nav-item" data-target="taraweeh">
+            <span class="b-icon">📖</span>
+            <span class="b-label">Taraweeh</span>
+        </button>
+        <button class="b-nav-item" data-target="quran">
+            <span class="b-icon">🕋</span>
+            <span class="b-label">Quran</span>
+        </button>
+        <button class="b-nav-item" data-target="tools">
+            <span class="b-icon">⚙️</span>
+            <span class="b-label">Tools</span>
+        </button>
+    </nav>
+    
+    <!-- Required for JS compatibility: hidden theme toggle if JS requires it, though app.js expects it to exist -->
+    <button id="themeToggle" style="display:none;"></button>
+    
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
