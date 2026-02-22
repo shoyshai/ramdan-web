@@ -1062,104 +1062,87 @@ document.addEventListener("DOMContentLoaded",async function(){
   }catch(err){console.error("Init error:",err);}
 });
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register(BASE + 'sw.js', { scope: BASE })
-      .then(function(r){ console.log('[SW] registered', r.scope); })
-      .catch(function(e){ console.warn('[SW] failed', e); });
-  });
+const isStandalone =
+  window.matchMedia("(display-mode: standalone)").matches ||
+  window.navigator.standalone;
+let deferredPrompt = null;
+const installBtn = document.getElementById("installBtn");
+
+function isIOS() {
+  return /iphone|ipad|ipod/i.test(navigator.userAgent);
 }
 
-var _pwaPrompt = null;
-var installBtn = document.getElementById("installBtn");
-
-// Check if already running as installed PWA
-function isRunningAsApp() {
-  return window.matchMedia('(display-mode: standalone)').matches ||
-         window.navigator.standalone === true ||
-         document.referrer.includes('android-app://');
+function showInstallUI() {
+  if (!installBtn) return;
+  installBtn.hidden = false;
+  installBtn.style.display = "inline-block";
 }
 
-window.addEventListener('beforeinstallprompt', function(e) {
+function hideInstallUI() {
+  if (!installBtn) return;
+  installBtn.hidden = true;
+  installBtn.style.display = "none";
+}
+
+function showIOSInstallInstructionsBanner() {
+  if (document.getElementById("ios-install-banner")) return;
+  const banner = document.createElement("div");
+  banner.id = "ios-install-banner";
+  banner.style.cssText = [
+    "position:fixed",
+    "left:50%",
+    "transform:translateX(-50%)",
+    "bottom:76px",
+    "width:min(620px, calc(100% - 24px))",
+    "z-index:9999",
+    "background:rgba(9, 20, 18, 0.96)",
+    "border:1px solid rgba(52,211,153,.35)",
+    "border-radius:12px",
+    "padding:12px 14px",
+    "color:#d9fff0",
+    "font-size:13px",
+    "line-height:1.5",
+    "box-shadow:0 10px 30px rgba(0,0,0,.5)"
+  ].join(";");
+  banner.innerHTML =
+    '<strong style="color:#7fffd4">Add to Home Screen</strong><br>' +
+    'In Safari: tap <strong>Share</strong> and choose <strong>Add to Home Screen</strong>.' +
+    '<button type="button" style="float:right;margin-top:8px;background:transparent;border:1px solid rgba(127,255,212,.4);color:#d9fff0;border-radius:999px;padding:4px 10px;cursor:pointer">OK</button>';
+  const btn = banner.querySelector("button");
+  if (btn) btn.addEventListener("click", () => banner.remove());
+  document.body.appendChild(banner);
+}
+
+async function handleInstallClick() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    hideInstallUI();
+    return;
+  }
+  if (isIOS()) {
+    showIOSInstallInstructionsBanner();
+  }
+}
+
+window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
-  _pwaPrompt = e;
-  if (installBtn) {
-    installBtn.hidden = false;
-    installBtn.style.display = "inline-block";
-  }
-  // Only show if not already installed and not dismissed recently
-  if (!isRunningAsApp() && !sessionStorage.getItem('pwa-dismissed')) {
-    setTimeout(showPWABanner, 2500);
-  }
+  deferredPrompt = e;
+  showInstallUI();
 });
 
-// Fallback show only if: not installed + not dismissed + on mobile
-setTimeout(function(){
-  if (!document.getElementById('pwa-bar') && !isRunningAsApp() && !sessionStorage.getItem('pwa-dismissed')) {
-    // Only show on mobile browsers (not desktop)
-    var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (isMobile) showPWABanner();
-  }
-}, 5000);
-
-function showPWABanner() {
-  // Double-check not installed
-  if (isRunningAsApp()) return;
-  if (document.getElementById('pwa-bar')) return;
-  var bar = document.createElement('div');
-  bar.id = 'pwa-bar';
-  bar.style.cssText = [
-    'position:fixed;bottom:62px;left:50%;transform:translateX(-50%)',
-    'width:calc(100% - 20px);max-width:460px',
-    'background:linear-gradient(135deg,rgba(8,18,38,.99),rgba(4,10,22,.99))',
-    'border:1.5px solid rgba(201,168,76,.6);border-radius:18px',
-    'padding:13px 14px;display:flex;align-items:center;gap:10px',
-    'z-index:9999;box-shadow:0 8px 36px rgba(0,0,0,.85)',
-    'animation:pwaSlideUp .4s cubic-bezier(.25,.8,.25,1)'
-  ].join(';');
-  bar.innerHTML =
-    '<style>@keyframes pwaSlideUp{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}</style>' +
-    '<div style="font-size:24px;flex-shrink:0">📲</div>' +
-    '<div style="flex:1;min-width:0">' +
-      '<div style="font-family:Cinzel,serif;font-size:12px;letter-spacing:1.5px;color:#f0d080;margin-bottom:3px">INSTALL AS APP — FREE</div>' +
-      '<div style="font-family:EB Garamond,serif;font-size:12px;color:rgba(255,255,255,.5)">Works offline · Home screen icon</div>' +
-    '</div>' +
-    '<button onclick="doPWAInstall()" style="background:linear-gradient(135deg,#c9a84c,#f0d080);border:none;border-radius:20px;padding:9px 14px;font-family:Cinzel,serif;font-size:10px;font-weight:700;letter-spacing:1px;color:#040a14;cursor:pointer;flex-shrink:0">INSTALL</button>' +
-    '<button onclick="closePWABar()" style="background:none;border:1px solid rgba(255,255,255,.15);border-radius:50%;min-width:28px;width:28px;height:28px;color:rgba(255,255,255,.4);cursor:pointer;font-size:18px;flex-shrink:0;display:flex;align-items:center;justify-content:center">×</button>';
-  document.body.appendChild(bar);
-}
-
-function doPWAInstall() {
-  if (_pwaPrompt) {
-    _pwaPrompt.prompt();
-    _pwaPrompt.userChoice.then(function(){ _pwaPrompt = null; closePWABar(); });
-  } else {
-    alert('To install:\n\nAndroid: Tap ⋮ menu → "Add to Home screen"\n\niPhone: Tap Share ↑ → "Add to Home Screen"');
-    closePWABar();
-  }
-}
-function closePWABar() {
-  // Session-only dismiss — banner comes back on next browser visit
-  try { sessionStorage.setItem('pwa-dismissed', '1'); } catch(e){}
-  var b = document.getElementById('pwa-bar');
-  if (b) { b.style.transition='opacity .3s'; b.style.opacity='0'; setTimeout(function(){ b.remove(); }, 300); }
-}
+window.addEventListener("appinstalled", () => {
+  deferredPrompt = null;
+  hideInstallUI();
+});
 
 if (installBtn) {
-  installBtn.addEventListener("click", async function() {
-    if (!_pwaPrompt) return;
-    _pwaPrompt.prompt();
-    await _pwaPrompt.userChoice;
-    _pwaPrompt = null;
-    installBtn.hidden = true;
-    installBtn.style.display = "none";
-  });
+  installBtn.addEventListener("click", handleInstallClick);
 }
 
-window.addEventListener("appinstalled", function() {
-  _pwaPrompt = null;
-  if (installBtn) {
-    installBtn.hidden = true;
-    installBtn.style.display = "none";
-  }
-});
+if (isStandalone) {
+  hideInstallUI();
+} else if (isIOS()) {
+  showInstallUI();
+}
