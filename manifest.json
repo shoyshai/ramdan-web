@@ -1,12 +1,11 @@
 {
-  "name": "Ramadan 2026",
-  "short_name": "Ramadan",
-  "description": "Offline Ramadan dashboard with schedule, Qibla, tasbeeh, and more.",
+  "name": "Ramadan Companion 2026",
+  "short_name": "Ramadan 2026",
   "start_url": "./",
-  "scope": "./",
   "display": "standalone",
-  "background_color": "#05070a",
-  "theme_color": "#4ef0c1",
+  "background_color": "#061c17",
+  "theme_color": "#0e3b2f",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "assets/icons/icon-192.png",

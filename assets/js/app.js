@@ -1071,6 +1071,7 @@ if ('serviceWorker' in navigator) {
 }
 
 var _pwaPrompt = null;
+var installBtn = document.getElementById("installBtn");
 
 // Check if already running as installed PWA
 function isRunningAsApp() {
@@ -1082,6 +1083,10 @@ function isRunningAsApp() {
 window.addEventListener('beforeinstallprompt', function(e) {
   e.preventDefault();
   _pwaPrompt = e;
+  if (installBtn) {
+    installBtn.hidden = false;
+    installBtn.style.display = "inline-block";
+  }
   // Only show if not already installed and not dismissed recently
   if (!isRunningAsApp() && !sessionStorage.getItem('pwa-dismissed')) {
     setTimeout(showPWABanner, 2500);
@@ -1139,3 +1144,22 @@ function closePWABar() {
   var b = document.getElementById('pwa-bar');
   if (b) { b.style.transition='opacity .3s'; b.style.opacity='0'; setTimeout(function(){ b.remove(); }, 300); }
 }
+
+if (installBtn) {
+  installBtn.addEventListener("click", async function() {
+    if (!_pwaPrompt) return;
+    _pwaPrompt.prompt();
+    await _pwaPrompt.userChoice;
+    _pwaPrompt = null;
+    installBtn.hidden = true;
+    installBtn.style.display = "none";
+  });
+}
+
+window.addEventListener("appinstalled", function() {
+  _pwaPrompt = null;
+  if (installBtn) {
+    installBtn.hidden = true;
+    installBtn.style.display = "none";
+  }
+});
