@@ -882,3 +882,59 @@ input:focus-visible, select:focus-visible {
 .install-btn:hover {
   opacity: 0.9;
 }
+
+/* Narrow centered layout */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.page-wrap {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 18px 12px 120px;
+}
+
+.page-card {
+  width: 100%;
+  max-width: 620px;
+  background: transparent;
+}
+
+.app-shell,
+.app {
+  width: 100%;
+  max-width: 620px !important;
+  margin: 0 auto !important;
+}
+
+.app-shell {
+  padding: 0 !important;
+  min-height: auto;
+}
+
+.hero,
+.section,
+.today-card,
+.schedule-card {
+  width: 100%;
+  max-width: 100%;
+}
+
+.bottom-nav,
+.tabbar {
+  width: min(620px, calc(100% - 24px));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 640px) {
+  .page-wrap {
+    padding: 10px 10px 120px;
+  }
+
+  .page-card {
+    max-width: 100%;
+  }
+}
