@@ -1,8 +1,6 @@
 ﻿# Ramadan Web (Parity Build)
 
-Vanilla HTML/CSS/JS Ramadan dashboard with PWA support, designed to match the reference UI/UX and behavior from:
 
-- https://amir1993.github.io/Ramadan-2026-India/
 
 ## Features
 
