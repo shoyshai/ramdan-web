@@ -8,11 +8,11 @@
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-<div class="app">
+<div class="app app-shell">
 <div class="stars-bg" id="stars"></div>
 <div class="content">
 
@@ -31,68 +31,42 @@
 <!-- HOME -->
 <div class="sec on" id="sec-home">
 
-<div class="hero">
-  <div class="hero-lanterns">
-    <div class="lantern" style="--ls:3.2s;--ld:0s"><div class="l-str"></div><div class="l-ico">🏮</div><div class="l-glow"></div></div>
-    <div class="lantern" style="--ls:2.7s;--ld:.5s"><div class="l-str"></div><div class="l-ico">🪔</div><div class="l-glow"></div></div>
-    <div class="lantern" style="--ls:3.6s;--ld:.9s"><div class="l-str"></div><div class="l-ico">🏮</div><div class="l-glow"></div></div>
-    <div class="lantern" style="--ls:2.5s;--ld:.3s"><div class="l-str"></div><div class="l-ico">🪔</div><div class="l-glow"></div></div>
-    <div class="lantern" style="--ls:3.9s;--ld:.7s"><div class="l-str"></div><div class="l-ico">🏮</div><div class="l-glow"></div></div>
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <div class="hero-title">Ramadan Companion</div>
+      <div class="hero-sub">India · 1447 AH · 2026</div>
+      <div class="hero-by">Built by <strong>Shoyeb Shaikh</strong></div>
+    </div>
+    <div class="hero-actions"></div>
   </div>
-  <div class="hstar" style="top:62px;left:15%;font-size:11px;--d:2.1s;--dl2:0s">✦</div>
-  <div class="hstar" style="top:74px;right:18%;font-size:13px;--d:3.2s;--dl2:1.1s">✦</div>
-  <div class="hstar" style="top:94px;left:33%;font-size:5px;--d:2.8s;--dl2:.6s">✦</div>
-  <div class="hstar" style="top:81px;right:37%;font-size:12px;color:rgba(201,168,76,.85);--d:2.3s;--dl2:1.8s">★</div>
-  <div class="hero-sub-row">
-    <span class="h-spark">✦</span>
-    <span class="hero-sub-txt">RAMADAN 1447 AH · INDIA 2026</span>
-    <span class="h-spark">✦</span>
-  </div>
-  <div class="hero-arabic-small" lang="ar" dir="rtl">رَمَضَان مُبَارَك</div>
+
+  <div class="hero-arabic arabic-line" lang="ar">رَمَضَان مُبَارَك</div>
+  <div class="rule"></div>
+
   <div class="hero-timing">
-    <div class="ht-box" id="ht-sehri">
-      <div class="ht-lbl">🌙 SEHRI ENDS</div>
+    <div class="ht-box card" id="ht-sehri">
+      <div class="ht-lbl">SEHRI ENDS</div>
       <div class="ht-time" id="hi-sh">--:--</div>
       <div class="ht-divider"></div>
-      <div class="ht-st pa" id="hi-sh-st">UPCOMING</div>
+      <div class="ht-st status upcoming" id="hi-sh-st">UPCOMING</div>
     </div>
     <div class="ht-mid">
-      <div class="ht-moon">🌙</div>
+      <div class="ht-moon">MOON</div>
       <div class="ht-roza" id="hi-roza">-- ROZA</div>
-      <div class="ht-city">📍 <span id="hi-city">PUNE</span></div>
+      <div class="ht-city"><span id="hi-city">PUNE</span></div>
     </div>
-    <div class="ht-box" id="ht-iftar">
-      <div class="ht-lbl">☀️ IFTAR TIME</div>
+    <div class="ht-box card" id="ht-iftar">
+      <div class="ht-lbl">IFTAR TIME</div>
       <div class="ht-time" id="hi-if">--:--</div>
       <div class="ht-divider"></div>
-      <div class="ht-st up" id="hi-if-st">UPCOMING</div>
+      <div class="ht-st status upcoming" id="hi-if-st">UPCOMING</div>
     </div>
   </div>
-  <div class="hero-ornament">· · · · ✦ · · · ·</div>
-  <div class="hero-crescent-glow"></div>
-  <div class="h-glow"></div>
-  <svg class="mosque-svg" viewBox="0 0 480 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0c1a2e"/><stop offset="100%" stop-color="#060e1c"/></linearGradient></defs>
-    <rect x="0" y="58" width="480" height="14" fill="url(#mg)"/>
-    <rect x="26" y="14" width="11" height="44" fill="url(#mg)"/><polygon points="26,14 37,14 31.5,3" fill="url(#mg)"/><ellipse cx="31.5" cy="17" rx="7" ry="3" fill="url(#mg)"/>
-    <rect x="443" y="14" width="11" height="44" fill="url(#mg)"/><polygon points="443,14 454,14 448.5,3" fill="url(#mg)"/><ellipse cx="448.5" cy="17" rx="7" ry="3" fill="url(#mg)"/>
-    <rect x="97" y="26" width="8" height="32" fill="url(#mg)"/><polygon points="97,26 105,26 101,16" fill="url(#mg)"/>
-    <rect x="375" y="26" width="8" height="32" fill="url(#mg)"/><polygon points="375,26 383,26 379,16" fill="url(#mg)"/>
-    <path d="M166,58 L166,36 Q240,1 314,36 L314,58 Z" fill="url(#mg)"/>
-    <line x1="240" y1="1" x2="240" y2="-4" stroke="rgba(201,168,76,.6)" stroke-width="1.2"/>
-    <path d="M236,1 Q240,-3 244,1 L243,4 L237,4 Z" fill="url(#mg)"/>
-    <path d="M116,58 L116,47 Q141,28 166,47 L166,58 Z" fill="url(#mg)"/>
-    <path d="M314,58 L314,47 Q339,28 364,47 L364,58 Z" fill="url(#mg)"/>
-    <rect x="116" y="47" width="248" height="11" fill="url(#mg)"/>
-    <path d="M152,58 L152,51 Q162,43 172,51 L172,58 Z" fill="rgba(3,7,14,.9)"/>
-    <path d="M193,58 L193,51 Q203,43 213,51 L213,58 Z" fill="rgba(3,7,14,.9)"/>
-    <path d="M226,58 L226,50 Q240,40 254,50 L254,58 Z" fill="rgba(3,7,14,.9)"/>
-    <path d="M267,58 L267,51 Q277,43 287,51 L287,58 Z" fill="rgba(3,7,14,.9)"/>
-    <path d="M308,58 L308,51 Q318,43 328,51 L328,58 Z" fill="rgba(3,7,14,.9)"/>
-    <line x1="0" y1="58" x2="480" y2="58" stroke="rgba(201,168,76,.36)" stroke-width="1"/>
-  </svg>
-</div>
+</header>
 
+  <h2 class="section-title">Today's Timings</h2>
+  <div class="rule"></div>
   <div class="sec-hdr">✦ TODAY'S TIMINGS ✦</div>
   <div class="today-card">
     <div class="td-lbl">✦ <span id="roza-lbl">RAMADAN 1447 AH</span> ✦</div>
@@ -218,19 +192,19 @@
 <div class="sec-hdr" style="padding-top:20px">💰 ZAKAT CALCULATOR</div>
 
 <!-- Intro -->
-<div style="margin:0 14px 14px;background:linear-gradient(145deg,rgba(8,16,36,.95),rgba(5,10,22,.92));border:1px solid rgba(201,168,76,.2);border-radius:16px;padding:16px;text-align:center">
+<div style="margin:0 14px 14px;background:linear-gradient(145deg,rgba(8,16,36,.95),rgba(5,10,22,.92));border:1px solid rgba(52,211,153,.2);border-radius:16px;padding:16px;text-align:center">
   <div style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:2px;color:var(--goldl);margin-bottom:8px">✦ ZAKAT 2026 · 1447 AH ✦</div>
   <div style="font-family:'EB Garamond',serif;font-size:13px;color:var(--muted);line-height:1.7">Zakat = <strong style="color:var(--cream)">2.5%</strong> of total zakatable wealth held above the <strong style="color:var(--cream)">Nisab</strong> for one full lunar year.</div>
   <div style="display:flex;gap:8px;margin-top:10px">
-    <div style="flex:1;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:8px 6px;text-align:center">
+    <div style="flex:1;background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.2);border-radius:10px;padding:8px 6px;text-align:center">
       <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;color:var(--muted);margin-bottom:3px">NISAB (GOLD)</div>
       <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--goldl)">85 grams</div>
     </div>
-    <div style="flex:1;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:8px 6px;text-align:center">
+    <div style="flex:1;background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.2);border-radius:10px;padding:8px 6px;text-align:center">
       <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;color:var(--muted);margin-bottom:3px">NISAB (SILVER)</div>
       <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--goldl)">595 grams</div>
     </div>
-    <div style="flex:1;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:8px 6px;text-align:center">
+    <div style="flex:1;background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.2);border-radius:10px;padding:8px 6px;text-align:center">
       <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;color:var(--muted);margin-bottom:3px">ZAKAT RATE</div>
       <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--green)">2.5%</div>
     </div>
@@ -242,7 +216,7 @@
   <div style="font-size:18px;flex-shrink:0;margin-top:1px">⚠️</div>
   <div>
     <div style="font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:1.8px;color:rgba(240,160,48,.9);margin-bottom:5px">FOR ESTIMATION ONLY</div>
-    <div style="font-family:'EB Garamond',serif;font-size:12.5px;color:rgba(201,168,76,.65);line-height:1.6">This calculator provides an <em>estimate</em> based on the values you enter. Zakat rulings can vary based on your personal situation, madhab, and scholarly opinion. Please consult a qualified <strong style="color:rgba(201,168,76,.85)">Imam, Mufti, or Islamic scholar</strong> before giving Zakat if you have any doubts.</div>
+    <div style="font-family:'EB Garamond',serif;font-size:12.5px;color:rgba(52,211,153,.65);line-height:1.6">This calculator provides an <em>estimate</em> based on the values you enter. Zakat rulings can vary based on your personal situation, madhab, and scholarly opinion. Please consult a qualified <strong style="color:rgba(52,211,153,.85)">Imam, Mufti, or Islamic scholar</strong> before giving Zakat if you have any doubts.</div>
   </div>
 </div>
 
@@ -322,11 +296,11 @@
   </div>
 
   <!-- Total Gold -->
-  <div class="zk-computed-row" id="z-g-total-row" style="display:none;border-top:1px solid rgba(201,168,76,.25);padding-top:8px;margin-top:2px">
+  <div class="zk-computed-row" id="z-g-total-row" style="display:none;border-top:1px solid rgba(52,211,153,.25);padding-top:8px;margin-top:2px">
     <div class="zk-comp-lbl" style="color:var(--goldl);font-weight:600">📊 TOTAL GOLD VALUE</div>
     <div class="zk-comp-val" id="z-g-val" style="font-size:15px">₹0</div>
   </div>
-  <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;color:rgba(201,168,76,.5);margin-top:8px">💡 Check today's rates at goldrate.in — rates differ by karat</div>
+  <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;color:rgba(52,211,153,.5);margin-top:8px">💡 Check today's rates at goldrate.in — rates differ by karat</div>
 </div>
 
 <!-- 3. SILVER -->
@@ -351,7 +325,7 @@
     <div class="zk-comp-lbl">📊 COMPUTED SILVER VALUE</div>
     <div class="zk-comp-val" id="z-s-val">₹0</div>
   </div>
-  <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;color:rgba(201,168,76,.5);margin-top:8px">💡 Check today's rate at silverprice.in or any jeweller app</div>
+  <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;color:rgba(52,211,153,.5);margin-top:8px">💡 Check today's rate at silverprice.in or any jeweller app</div>
 </div>
 
 <!-- 4. INVESTMENTS -->
@@ -489,7 +463,7 @@
       <div id="qb-debug" style="display:none;font-family:monospace;font-size:10px;color:#aaa;padding:4px 8px;background:rgba(0,0,0,.6);border-radius:6px;margin:0 14px 6px;text-align:center;word-break:break-all"></div>
     <div class="qibla-status">
         <div class="qb-status-txt" id="qb-status-txt">🔄 Detecting your location...</div>
-        <button id="qb-enable-btn" onclick="requestIOSCompass()" style="display:none;margin:10px auto 0;padding:10px 24px;background:linear-gradient(135deg,#c9a84c,#f0d080);border:none;border-radius:20px;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:1.5px;color:#040a14;cursor:pointer;box-shadow:0 4px 14px rgba(201,168,76,.3)">📱 ENABLE LIVE COMPASS</button>
+        <button id="qb-enable-btn" onclick="requestIOSCompass()" style="display:none;margin:10px auto 0;padding:10px 24px;background:linear-gradient(135deg,#34d399,#7fffd4);border:none;border-radius:20px;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:1.5px;color:#040a14;cursor:pointer;box-shadow:0 4px 14px rgba(52,211,153,.3)">📱 ENABLE LIVE COMPASS</button>
       </div>
 
       <div class="qibla-cities-note">
@@ -840,7 +814,7 @@
       <div class="names-intro-ar">وَلِلَّهِ الْأَسْمَاءُ الْحُسْنَىٰ فَادْعُوهُ بِهَا</div>
       <div class="names-intro-tr">"And to Allah belong the most beautiful names, so call upon Him by them."</div>
       <div class="names-intro-ref">— Quran 7:180</div>
-      <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(201,168,76,.55);margin-top:8px">✦ 99 NAMES · ASMA UL HUSNA ✦</div>
+      <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(52,211,153,.55);margin-top:8px">✦ 99 NAMES · ASMA UL HUSNA ✦</div>
     </div>
     <div class="names-grid">
       <div class="name-card"><div class="nc-num">01</div><div class="nc-ar">اللَّه</div><div class="nc-en">ALLAH</div><div class="nc-me">The One God, the Supreme Being</div></div>
@@ -943,7 +917,7 @@
       <div class="name-card"><div class="nc-num">98</div><div class="nc-ar">الْوَارِث</div><div class="nc-en">AL-WARITH</div><div class="nc-me">The Inheritor — possesses all after</div></div>
       <div class="name-card"><div class="nc-num">99</div><div class="nc-ar">الرَّشِيد</div><div class="nc-en">AR-RASHID</div><div class="nc-me">The Guide to Right Path</div></div>
     </div>
-    <div style="text-align:center;padding:10px 0 8px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1.5px;color:rgba(201,168,76,.6)">✦ Allahummah dini wa saddidni ✦</div>
+    <div style="text-align:center;padding:10px 0 8px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1.5px;color:rgba(52,211,153,.6)">✦ Allahummah dini wa saddidni ✦</div>
   </div>
 
   <div style="height:16px"></div>
@@ -977,6 +951,7 @@
 </div>
 
 </div></div>
+
 <div class="save-badge" id="save-badge">✓ SAVED</div>
 
 
