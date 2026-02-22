@@ -1,243 +1,987 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ramadan Utility Dashboard 2026</title>
-    <meta name="theme-color" content="#070b12">
-    <link rel="manifest" id="manifestLink" href="manifest.json">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
-    <!-- Google Fonts for the premium look -->
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/styles.css">
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Ramadan Mubarak 2026 | India</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body class="theme-dark">
-    <!-- HERO SECTION -->
-    <header class="hero-section" id="home">
-        <div class="hero-content">
-            <div class="hero-actions">
-                <button id="themeToggle" class="icon-btn" type="button" aria-label="Toggle theme">🌙</button>
-                <button id="compactToggle" class="icon-btn" type="button" aria-label="Toggle compact mode">↕</button>
-            </div>
-            <div class="hero-title">✦ RAMADAN 1447 AH · INDIA 2026 ✦</div>
-            <div class="byline">by <span class="accent-text">Shoyeb Shaikh</span></div>
-            <div class="hero-arabic">رَمَضَان مُبَارَك</div>
-            
-            <div class="hero-cards">
-                <div class="h-card">
-                    <span class="hc-icon">🌙</span>
-                    <span class="hc-label">SEHRI ENDS</span>
-                    <span class="hc-time" id="heroSehri">--:--</span>
-                    <span class="hc-status" id="heroSehriStatus">UPCOMING</span>
-                </div>
-                <!-- Center Info Card -->
-                <div class="h-card hc-center">
-                    <span class="hc-icon">🕌</span>
-                    <span class="hc-roza" id="heroRozaLabel">Loading...</span>
-                    <!-- City Selector -->
-                    <div class="city-selector-wrapper">
-                        <div class="city-picker-row">
-                        <div class="city-picker" id="cityPicker">
-                            <button class="city-picker__btn" id="cityPickerBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
-                                <span class="city-picker__label">City</span>
-                                <span class="city-picker__value" id="cityPickerValue">Loading...</span>
-                                <span class="city-picker__caret">▾</span>
-                            </button>
-                            <div class="city-picker__panel" id="cityPickerPanel" hidden>
-                                <input class="city-picker__search" id="cityPickerSearch" type="text" placeholder="Search city..." autocomplete="off">
-                                <ul class="city-picker__list" id="cityPickerList" role="listbox" tabindex="-1"></ul>
-                            </div>
-                            <select id="citySelect" class="sr-only"><option value="">Loading...</option></select>
-                        </div>
-                        <button id="geoCityBtn" type="button" class="icon-btn geo-city-btn" aria-label="Use my location">&#128205;</button>
-                        </div>
-                        <div id="geoCityStatus" class="geo-status" aria-live="polite"></div>
-                    </div>
-                </div>
-                <div class="h-card">
-                    <span class="hc-icon">☀️</span>
-                    <span class="hc-label">IFTAR TIME</span>
-                    <span class="hc-time" id="heroIftar">--:--</span>
-                    <span class="hc-status" id="heroIftarStatus">UPCOMING</span>
-                </div>
-            </div>
-            <!-- City Chips / Pills -->
-            <div class="city-chips" id="cityChips"></div>
+<body>
+<div class="app">
+<div class="stars-bg" id="stars"></div>
+<div class="content">
+
+<div class="alert alert-g hidden" id="alert-s">⚠️ &nbsp;SEHRI ENDS IN LESS THAN 10 MINUTES!</div>
+<div class="alert alert-b hidden" id="alert-i">🌙 &nbsp;MUBARAK! IFTAR TIME HAS ARRIVED!</div>
+
+<!-- TABBAR -->
+<div class="tabbar">
+  <div class="tb on" id="tb-home" onclick="showTab('home')"><div class="tb-ic">🏠</div><div class="tb-tx">HOME</div></div>
+  <div class="tb" id="tb-tools" onclick="showTab('tools')"><div class="tb-ic">🧮</div><div class="tb-tx">TOOLS</div></div>
+  <div class="tb" id="tb-sched" onclick="showTab('sched')"><div class="tb-ic">📅</div><div class="tb-tx">SCHEDULE</div></div>
+  <div class="tb" id="tb-duas" onclick="showTab('duas')"><div class="tb-ic">🤲</div><div class="tb-tx">DUAS</div></div>
+  <div class="tb" id="tb-sadqa" onclick="showTab('sadqa')"><div class="tb-ic">💜</div><div class="tb-tx">SADQA</div></div>
+</div>
+
+<!-- HOME -->
+<div class="sec on" id="sec-home">
+
+<div class="hero">
+  <div class="hero-lanterns">
+    <div class="lantern" style="--ls:3.2s;--ld:0s"><div class="l-str"></div><div class="l-ico">🏮</div><div class="l-glow"></div></div>
+    <div class="lantern" style="--ls:2.7s;--ld:.5s"><div class="l-str"></div><div class="l-ico">🪔</div><div class="l-glow"></div></div>
+    <div class="lantern" style="--ls:3.6s;--ld:.9s"><div class="l-str"></div><div class="l-ico">🏮</div><div class="l-glow"></div></div>
+    <div class="lantern" style="--ls:2.5s;--ld:.3s"><div class="l-str"></div><div class="l-ico">🪔</div><div class="l-glow"></div></div>
+    <div class="lantern" style="--ls:3.9s;--ld:.7s"><div class="l-str"></div><div class="l-ico">🏮</div><div class="l-glow"></div></div>
+  </div>
+  <div class="hstar" style="top:62px;left:15%;font-size:11px;--d:2.1s;--dl2:0s">✦</div>
+  <div class="hstar" style="top:74px;right:18%;font-size:13px;--d:3.2s;--dl2:1.1s">✦</div>
+  <div class="hstar" style="top:94px;left:33%;font-size:5px;--d:2.8s;--dl2:.6s">✦</div>
+  <div class="hstar" style="top:81px;right:37%;font-size:12px;color:rgba(201,168,76,.85);--d:2.3s;--dl2:1.8s">★</div>
+  <div class="hero-sub-row">
+    <span class="h-spark">✦</span>
+    <span class="hero-sub-txt">RAMADAN 1447 AH · INDIA 2026</span>
+    <span class="h-spark">✦</span>
+  </div>
+  <div class="hero-arabic-small" lang="ar" dir="rtl">رَمَضَان مُبَارَك</div>
+  <div class="hero-timing">
+    <div class="ht-box" id="ht-sehri">
+      <div class="ht-lbl">🌙 SEHRI ENDS</div>
+      <div class="ht-time" id="hi-sh">--:--</div>
+      <div class="ht-divider"></div>
+      <div class="ht-st pa" id="hi-sh-st">UPCOMING</div>
+    </div>
+    <div class="ht-mid">
+      <div class="ht-moon">🌙</div>
+      <div class="ht-roza" id="hi-roza">-- ROZA</div>
+      <div class="ht-city">📍 <span id="hi-city">PUNE</span></div>
+    </div>
+    <div class="ht-box" id="ht-iftar">
+      <div class="ht-lbl">☀️ IFTAR TIME</div>
+      <div class="ht-time" id="hi-if">--:--</div>
+      <div class="ht-divider"></div>
+      <div class="ht-st up" id="hi-if-st">UPCOMING</div>
+    </div>
+  </div>
+  <div class="hero-ornament">· · · · ✦ · · · ·</div>
+  <div class="hero-crescent-glow"></div>
+  <div class="h-glow"></div>
+  <svg class="mosque-svg" viewBox="0 0 480 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0c1a2e"/><stop offset="100%" stop-color="#060e1c"/></linearGradient></defs>
+    <rect x="0" y="58" width="480" height="14" fill="url(#mg)"/>
+    <rect x="26" y="14" width="11" height="44" fill="url(#mg)"/><polygon points="26,14 37,14 31.5,3" fill="url(#mg)"/><ellipse cx="31.5" cy="17" rx="7" ry="3" fill="url(#mg)"/>
+    <rect x="443" y="14" width="11" height="44" fill="url(#mg)"/><polygon points="443,14 454,14 448.5,3" fill="url(#mg)"/><ellipse cx="448.5" cy="17" rx="7" ry="3" fill="url(#mg)"/>
+    <rect x="97" y="26" width="8" height="32" fill="url(#mg)"/><polygon points="97,26 105,26 101,16" fill="url(#mg)"/>
+    <rect x="375" y="26" width="8" height="32" fill="url(#mg)"/><polygon points="375,26 383,26 379,16" fill="url(#mg)"/>
+    <path d="M166,58 L166,36 Q240,1 314,36 L314,58 Z" fill="url(#mg)"/>
+    <line x1="240" y1="1" x2="240" y2="-4" stroke="rgba(201,168,76,.6)" stroke-width="1.2"/>
+    <path d="M236,1 Q240,-3 244,1 L243,4 L237,4 Z" fill="url(#mg)"/>
+    <path d="M116,58 L116,47 Q141,28 166,47 L166,58 Z" fill="url(#mg)"/>
+    <path d="M314,58 L314,47 Q339,28 364,47 L364,58 Z" fill="url(#mg)"/>
+    <rect x="116" y="47" width="248" height="11" fill="url(#mg)"/>
+    <path d="M152,58 L152,51 Q162,43 172,51 L172,58 Z" fill="rgba(3,7,14,.9)"/>
+    <path d="M193,58 L193,51 Q203,43 213,51 L213,58 Z" fill="rgba(3,7,14,.9)"/>
+    <path d="M226,58 L226,50 Q240,40 254,50 L254,58 Z" fill="rgba(3,7,14,.9)"/>
+    <path d="M267,58 L267,51 Q277,43 287,51 L287,58 Z" fill="rgba(3,7,14,.9)"/>
+    <path d="M308,58 L308,51 Q318,43 328,51 L328,58 Z" fill="rgba(3,7,14,.9)"/>
+    <line x1="0" y1="58" x2="480" y2="58" stroke="rgba(201,168,76,.36)" stroke-width="1"/>
+  </svg>
+</div>
+
+  <div class="sec-hdr">✦ TODAY'S TIMINGS ✦</div>
+  <div class="today-card">
+    <div class="td-lbl">✦ <span id="roza-lbl">RAMADAN 1447 AH</span> ✦</div>
+    <div class="td-date" id="td-date">Loading...</div>
+    <div class="city-sw" id="city-sw"></div>
+    <div class="clock" id="clock">00:00:00</div>
+    <div class="cd-lbl" id="cd-lbl">⏳ LOADING...</div>
+    <div class="cd-row">
+      <div class="cd-box"><div class="cd-n" id="cd-h">00</div><div class="cd-u">HRS</div></div>
+      <div class="cd-box"><div class="cd-n" id="cd-m">00</div><div class="cd-u">MIN</div></div>
+      <div class="cd-box"><div class="cd-n" id="cd-s">00</div><div class="cd-u">SEC</div></div>
+    </div>
+    <div class="si-row">
+      <div class="si-col"><div class="si-lbl">🌙 SEHRI ENDS</div><div class="si-time" id="s-time">--:--</div><div class="stag tag-u" id="s-st">UPCOMING</div></div>
+      <div class="si-col"><div class="si-lbl">☀️ IFTAR TIME</div><div class="si-time" id="i-time">--:--</div><div class="stag tag-u" id="i-st">UPCOMING</div></div>
+    </div>
+  </div>
+
+  <div class="sec-hdr">✦ PRAYER TIMES ✦</div>
+  <div class="pgrid">
+    <div class="pt" id="pt-fajr"><div class="pt-ic">🌅</div><div class="pt-lb">FAJR/SEHRI</div><div class="pt-tm" id="t-fajr">--:--</div></div>
+    <div class="pt" id="pt-dhuhr"><div class="pt-ic">☀️</div><div class="pt-lb">DHUHR</div><div class="pt-tm" id="t-dhuhr">--:--</div></div>
+    <div class="pt" id="pt-asr"><div class="pt-ic">🌤️</div><div class="pt-lb">ASR</div><div class="pt-tm" id="t-asr">--:--</div></div>
+    <div class="pt" id="pt-maghrib"><div class="pt-ic">🌇</div><div class="pt-lb">MAGHRIB/IFTAR</div><div class="pt-tm" id="t-maghrib">--:--</div></div>
+    <div class="pt" id="pt-isha"><div class="pt-ic">🌙</div><div class="pt-lb">ISHA</div><div class="pt-tm" id="t-isha">--:--</div></div>
+    <div class="pt"><div class="pt-ic">⭐</div><div class="pt-lb">TARAWEEH</div><div class="pt-tm" id="t-tarawih">--:--</div></div>
+  </div>
+
+  <div class="sec-hdr" style="padding:14px 0 6px">🏙️ ALL CITIES</div>
+  <div class="cities-grid" id="cities-grid"></div>
+    <!-- Quran Verse of the Day -->
+  <div class="sec-hdr">📖 QURAN VERSE OF THE DAY</div>
+  <div class="quran-card">
+    <div class="qv-ar" id="qv-ar">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="qv-tr" id="qv-tr">In the name of Allah, the Most Gracious, the Most Merciful.</div>
+    <div class="qv-ref" id="qv-ref">Al-Fatiha 1:1</div>
+  </div>
+
+  <!-- Voice Reminder Toggle -->
+  <div class="rem-row-home">
+    <div class="rem-info">
+      <div class="rem-ttl">🔔 VOICE REMINDERS</div>
+      <div class="rem-sub">Sehri & Iftar alerts spoken aloud</div>
+    </div>
+    <div class="tog on" id="rem-tog" onclick="toggleRem()"><div class="tog-k"></div></div>
+  </div>
+
+  <!-- Sadqa-e-Jariya closing -->
+  <div class="home-closing">
+    <div class="hc-dev">
+      <div class="hc-icon">✦</div>
+      <div class="hc-tag">CRAFTED WITH LOVE &amp; DUAS</div>
+      <div class="hc-name">Shoyeb Shaikh</div>
+      <div class="hc-yr">Ramadan 2026 · 1447 AH · India</div>
+    </div>
+</div>
+</div>
+
+<!-- TOOLS -->
+<div class="sec" id="sec-tools">
+  <div class="sec-hdr" style="padding-top:18px">🕌 IBADAH TOOLS</div>
+  <div class="tool-pills">
+    <div class="tpill on" id="tp-ts" onclick="showTool('ts')">📿 Tasbeeh</div>
+    <div class="tpill" id="tp-tw" onclick="showTool('tw')">⭐ Taraweeh</div>
+    <div class="tpill" id="tp-zk" onclick="showTool('zk')">💰 Zakat</div>
+    <div class="tpill" id="tp-qp" onclick="showTool('qp')">📖 Quran</div>
+    <div class="tpill" id="tp-ft" onclick="showTool('ft')">💸 Fitrana</div>
+    <div class="tpill" id="tp-qb" onclick="showTool('qb')">🧭 Qibla</div>
+  </div>
+
+<div id="tool-ts" class="tool-panel">
+  <div class="sec-hdr" style="padding-top:18px">📿 TASBEEH COUNTER</div>
+  <div class="ts-sel">
+    <div class="ts-opt on" id="ts0" onclick="setTs(0)"><span class="ts-ar">سُبْحَانَ اللَّهِ</span><span class="ts-en">SUBHANALLAH</span></div>
+    <div class="ts-opt" id="ts1" onclick="setTs(1)"><span class="ts-ar">الْحَمْدُ لِلَّهِ</span><span class="ts-en">ALHAMDULILLAH</span></div>
+    <div class="ts-opt" id="ts2" onclick="setTs(2)"><span class="ts-ar">اللَّهُ أَكْبَر</span><span class="ts-en">ALLAHU AKBAR</span></div>
+  </div>
+  <div class="ts-wrap">
+    <div class="ts-count" id="ts-cnt">0</div>
+    <div class="ts-btn-big" id="ts-big" onclick="tapTs(event)">
+      <div class="ts-tap-ar" id="ts-big-ar">سُبْحَانَ اللَّهِ</div>
+      <div class="ts-tap-en" id="ts-big-en">SUBHANALLAH</div>
+      <div class="ts-hint">TAP TO COUNT</div>
+    </div>
+    <div class="ts-pbar"><div class="ts-pfill" id="ts-pf" style="width:0%"></div></div>
+    <div class="ts-info" id="ts-info">0 / 33 · Sets: 0</div>
+  </div>
+  <div class="ts-ctrl">
+    <div class="ts-c" onclick="tsUndo()">↩ UNDO</div>
+    <div class="ts-c" onclick="tsReset()">↺ RESET</div>
+    <div class="ts-c" onclick="openTsGoal()">🎯 GOAL</div>
+  </div>
+  <div class="ts-totals">
+    <div class="ts-tot"><div class="ts-tot-ar">سُبْحَانَ اللَّهِ</div><div class="ts-tot-n" id="ts-t0">0</div></div>
+    <div class="ts-tot"><div class="ts-tot-ar">الْحَمْدُ لِلَّهِ</div><div class="ts-tot-n" id="ts-t1">0</div></div>
+    <div class="ts-tot"><div class="ts-tot-ar">اللَّهُ أَكْبَر</div><div class="ts-tot-n" id="ts-t2">0</div></div>
+  </div>
+</div>
+<div id="tool-tw" class="tool-panel" style="display:none">
+  <div class="tw-hdr-bar">⭐ TARAWEEH RAKAT TRACKER · TONIGHT</div>
+  <div class="tw-card">
+    <div class="tw-card-lbl">RAKATS COMPLETED TONIGHT</div>
+    <div class="tw-big" id="tw-cnt">0</div>
+    <div class="tw-card-sub">OF 20 RAKATS TARAWEEH + 3 WITR</div>
+    <div class="tw-circles" id="rk-grid"></div>
+    <div class="tw-pb"><div class="tw-pf" id="tw-pf" style="width:0%"></div></div>
+    <div class="tw-tap-hint">Tap circles to mark each Rakat completed 🤲</div>
+    <div class="tw-btns">
+      <div class="tw-btn tw-minus" onclick="twAdd(-2)">−2</div>
+      <div class="tw-btn tw-plus" onclick="twAdd(2)">+2</div>
+      <button class="tw-btn tw-reset" onclick="twReset()">RESET NIGHT</button>
+    </div>
+  </div>
+  <div class="tw-dua-card">
+    <div class="tw-dua-ttl">🤲 DUA FOR TARAWEEH · AFTER EVERY 4 RAKATS</div>
+    <div class="tw-dua-ar">سُبْحَانَ ذِي الْمُلْكِ وَالْمَلَكُوتِ سُبْحَانَ ذِي الْعِزَّةِ وَالْعَظَمَةِ وَالْهَيْبَةِ وَالْقُدْرَةِ وَالْكِبْرِيَاءِ وَالْجَبَرُوتِ سُبْحَانَ الْمَلِكِ الْحَيِّ الَّذِي لَا يَنَامُ وَلَا يَمُوتُ سُبُّوحٌ قُدُّوسٌ رَبُّنَا وَرَبُّ الْمَلَائِكَةِ وَالرُّوحِ اللَّهُمَّ أَجِرْنَا مِنَ النَّارِ يَا مُجِيرُ يَا مُجِيرُ يَا مُجِيرُ</div>
+    <div class="tw-dua-tr">Subhana Dhil-Mulki wal-Malakoot. Subhana Dhil-Izzati wal-Azhamati wal-Haybati wal-Qudrati wal-Kibriyai wal-Jabaroot. Subhanal-Malikil-Hayyil-Ladhi Laa Yanaamu wa Laa Yamoot. Subboohun Quddoosun Rabbuna wa Rabbul-Malaikati war-Rooh. Allahumma ajirna minan-naar, Ya Mujeer, Ya Mujeer, Ya Mujeer.</div>
+    <div class="tw-dua-en">Glory be to the One who has all power and control. Glory be to the One who possesses honour, greatness, awe, power, majesty and might. Glory be to the Eternal King who never sleeps and never dies. He is Perfect and Holy, our Lord and the Lord of the angels and the souls. O Allah, protect us from the fire (of Hell), O Protector, O Protector, O Protector.</div>
+  </div>
+  </div>
+
+  <div id="tool-zk" class="tool-panel" style="display:none">
+<div class="sec-hdr" style="padding-top:20px">💰 ZAKAT CALCULATOR</div>
+
+<!-- Intro -->
+<div style="margin:0 14px 14px;background:linear-gradient(145deg,rgba(8,16,36,.95),rgba(5,10,22,.92));border:1px solid rgba(201,168,76,.2);border-radius:16px;padding:16px;text-align:center">
+  <div style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:2px;color:var(--goldl);margin-bottom:8px">✦ ZAKAT 2026 · 1447 AH ✦</div>
+  <div style="font-family:'EB Garamond',serif;font-size:13px;color:var(--muted);line-height:1.7">Zakat = <strong style="color:var(--cream)">2.5%</strong> of total zakatable wealth held above the <strong style="color:var(--cream)">Nisab</strong> for one full lunar year.</div>
+  <div style="display:flex;gap:8px;margin-top:10px">
+    <div style="flex:1;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:8px 6px;text-align:center">
+      <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;color:var(--muted);margin-bottom:3px">NISAB (GOLD)</div>
+      <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--goldl)">85 grams</div>
+    </div>
+    <div style="flex:1;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:8px 6px;text-align:center">
+      <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;color:var(--muted);margin-bottom:3px">NISAB (SILVER)</div>
+      <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--goldl)">595 grams</div>
+    </div>
+    <div style="flex:1;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:8px 6px;text-align:center">
+      <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;color:var(--muted);margin-bottom:3px">ZAKAT RATE</div>
+      <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--green)">2.5%</div>
+    </div>
+  </div>
+</div>
+
+<!-- Disclaimer -->
+<div style="margin:0 14px 14px;background:linear-gradient(135deg,rgba(240,160,48,.06),rgba(240,160,48,.02));border:1px solid rgba(240,160,48,.3);border-radius:14px;padding:13px 15px;display:flex;gap:10px;align-items:flex-start">
+  <div style="font-size:18px;flex-shrink:0;margin-top:1px">⚠️</div>
+  <div>
+    <div style="font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:1.8px;color:rgba(240,160,48,.9);margin-bottom:5px">FOR ESTIMATION ONLY</div>
+    <div style="font-family:'EB Garamond',serif;font-size:12.5px;color:rgba(201,168,76,.65);line-height:1.6">This calculator provides an <em>estimate</em> based on the values you enter. Zakat rulings can vary based on your personal situation, madhab, and scholarly opinion. Please consult a qualified <strong style="color:rgba(201,168,76,.85)">Imam, Mufti, or Islamic scholar</strong> before giving Zakat if you have any doubts.</div>
+  </div>
+</div>
+
+<!-- 1. CASH & BANK -->
+<div class="zk-asset-block">
+  <div class="zk-asset-hdr">
+    <div class="zk-asset-ic">💵</div>
+    <div class="zk-asset-title">CASH &amp; BANK SAVINGS</div>
+    <div class="zk-asset-badge">2.5%</div>
+  </div>
+  <div class="zk-field">
+    <div class="zk-field-lbl">TOTAL AMOUNT (₹)</div>
+    <input class="zk-inp2" type="number" id="z-cash" placeholder="e.g. 1,00,000" oninput="calcZ()">
+  </div>
+</div>
+
+<!-- 2. GOLD -->
+<div class="zk-asset-block">
+  <div class="zk-asset-hdr">
+    <div class="zk-asset-ic">🪙</div>
+    <div class="zk-asset-title">GOLD</div>
+    <div class="zk-asset-badge">2.5%</div>
+  </div>
+
+  <!-- 24K -->
+  <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;color:var(--goldl);margin-bottom:4px;opacity:.8">24 KARAT (Pure Gold — Coins, Bars)</div>
+  <div style="display:flex;gap:6px;margin-bottom:6px">
+    <div class="zk-field" style="flex:1">
+      <div class="zk-field-lbl">QUANTITY (grams)</div>
+      <input class="zk-inp2" type="number" id="z-g24-qty" placeholder="e.g. 10" oninput="calcZ()">
+    </div>
+    <div style="align-self:flex-end;padding-bottom:10px;color:var(--muted);font-size:13px;flex-shrink:0">×</div>
+    <div class="zk-field" style="flex:1">
+      <div class="zk-field-lbl" style="display:flex;justify-content:space-between;align-items:center">RATE (₹/gram)<span id="z-g24-rate-warn" style="display:none;font-size:8px;color:#e05;letter-spacing:.5px">REQUIRED ↑</span></div>
+      <input class="zk-inp2" type="number" id="z-g24-rate" placeholder="Today's 24K rate e.g. 9200" oninput="calcZ()" style="transition:border-color .2s">
+    </div>
+  </div>
+  <div class="zk-computed-row" id="z-g24-computed" style="display:none;margin-bottom:8px">
+    <div class="zk-comp-lbl">24K Gold Value</div>
+    <div class="zk-comp-val" id="z-g24-val">₹0</div>
+  </div>
+
+  <!-- 22K -->
+  <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;color:var(--goldl);margin-bottom:4px;opacity:.8">22 KARAT (Jewellery — Most Common)</div>
+  <div style="display:flex;gap:6px;margin-bottom:6px">
+    <div class="zk-field" style="flex:1">
+      <div class="zk-field-lbl">QUANTITY (grams)</div>
+      <input class="zk-inp2" type="number" id="z-g22-qty" placeholder="e.g. 50" oninput="calcZ()">
+    </div>
+    <div style="align-self:flex-end;padding-bottom:10px;color:var(--muted);font-size:13px;flex-shrink:0">×</div>
+    <div class="zk-field" style="flex:1">
+      <div class="zk-field-lbl" style="display:flex;justify-content:space-between;align-items:center">RATE (₹/gram)<span id="z-g22-rate-warn" style="display:none;font-size:8px;color:#e05;letter-spacing:.5px">REQUIRED ↑</span></div>
+      <input class="zk-inp2" type="number" id="z-g22-rate" placeholder="Today's 22K rate e.g. 8500" oninput="calcZ()" style="transition:border-color .2s">
+    </div>
+  </div>
+  <div class="zk-computed-row" id="z-g22-computed" style="display:none;margin-bottom:8px">
+    <div class="zk-comp-lbl">22K Gold Value</div>
+    <div class="zk-comp-val" id="z-g22-val">₹0</div>
+  </div>
+
+  <!-- 18K -->
+  <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;color:var(--goldl);margin-bottom:4px;opacity:.8">18 KARAT (Modern Jewellery, Diamond Settings)</div>
+  <div style="display:flex;gap:6px;margin-bottom:6px">
+    <div class="zk-field" style="flex:1">
+      <div class="zk-field-lbl">QUANTITY (grams)</div>
+      <input class="zk-inp2" type="number" id="z-g18-qty" placeholder="e.g. 15" oninput="calcZ()">
+    </div>
+    <div style="align-self:flex-end;padding-bottom:10px;color:var(--muted);font-size:13px;flex-shrink:0">×</div>
+    <div class="zk-field" style="flex:1">
+      <div class="zk-field-lbl" style="display:flex;justify-content:space-between;align-items:center">RATE (₹/gram)<span id="z-g18-rate-warn" style="display:none;font-size:8px;color:#e05;letter-spacing:.5px">REQUIRED ↑</span></div>
+      <input class="zk-inp2" type="number" id="z-g18-rate" placeholder="Today's 18K rate e.g. 7000" oninput="calcZ()" style="transition:border-color .2s">
+    </div>
+  </div>
+  <div class="zk-computed-row" id="z-g18-computed" style="display:none;margin-bottom:8px">
+    <div class="zk-comp-lbl">18K Gold Value</div>
+    <div class="zk-comp-val" id="z-g18-val">₹0</div>
+  </div>
+
+  <!-- Total Gold -->
+  <div class="zk-computed-row" id="z-g-total-row" style="display:none;border-top:1px solid rgba(201,168,76,.25);padding-top:8px;margin-top:2px">
+    <div class="zk-comp-lbl" style="color:var(--goldl);font-weight:600">📊 TOTAL GOLD VALUE</div>
+    <div class="zk-comp-val" id="z-g-val" style="font-size:15px">₹0</div>
+  </div>
+  <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;color:rgba(201,168,76,.5);margin-top:8px">💡 Check today's rates at goldrate.in — rates differ by karat</div>
+</div>
+
+<!-- 3. SILVER -->
+<div class="zk-asset-block">
+  <div class="zk-asset-hdr">
+    <div class="zk-asset-ic">🥈</div>
+    <div class="zk-asset-title">SILVER</div>
+    <div class="zk-asset-badge">2.5%</div>
+  </div>
+  <div style="display:flex;gap:6px;margin-bottom:6px">
+    <div class="zk-field" style="flex:1">
+      <div class="zk-field-lbl">QUANTITY (grams)</div>
+      <input class="zk-inp2" type="number" id="z-s-qty" placeholder="e.g. 200" oninput="calcZ()">
+    </div>
+    <div style="align-self:flex-end;padding-bottom:10px;color:var(--muted);font-size:13px;flex-shrink:0">×</div>
+    <div class="zk-field" style="flex:1">
+      <div class="zk-field-lbl">TODAY'S RATE (₹/gram)</div>
+      <input class="zk-inp2" type="number" id="z-s-rate" placeholder="e.g. 95" oninput="calcZ()">
+    </div>
+  </div>
+  <div class="zk-computed-row" id="z-s-computed" style="display:none">
+    <div class="zk-comp-lbl">📊 COMPUTED SILVER VALUE</div>
+    <div class="zk-comp-val" id="z-s-val">₹0</div>
+  </div>
+  <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;color:rgba(201,168,76,.5);margin-top:8px">💡 Check today's rate at silverprice.in or any jeweller app</div>
+</div>
+
+<!-- 4. INVESTMENTS -->
+<div class="zk-asset-block">
+  <div class="zk-asset-hdr">
+    <div class="zk-asset-ic">📈</div>
+    <div class="zk-asset-title">INVESTMENTS / SHARES / MF</div>
+    <div class="zk-asset-badge">2.5%</div>
+  </div>
+  <div class="zk-field">
+    <div class="zk-field-lbl">CURRENT MARKET VALUE (₹)</div>
+    <input class="zk-inp2" type="number" id="z-inv" placeholder="e.g. 2,00,000" oninput="calcZ()">
+  </div>
+</div>
+
+<!-- 5. MONEY OWED -->
+<div class="zk-asset-block">
+  <div class="zk-asset-hdr">
+    <div class="zk-asset-ic">🤝</div>
+    <div class="zk-asset-title">MONEY OWED TO YOU</div>
+    <div class="zk-asset-badge">2.5%</div>
+  </div>
+  <div class="zk-field">
+    <div class="zk-field-lbl">AMOUNT (₹)</div>
+    <input class="zk-inp2" type="number" id="z-recv" placeholder="e.g. 50,000" oninput="calcZ()">
+  </div>
+</div>
+
+<!-- NISAB STATUS CHECK -->
+<div class="zk-nisab-check empty" id="zk-nisab-check">
+  <div class="zk-nc-icon">⚖️</div>
+  <div class="zk-nc-title" style="color:var(--muted)">NISAB STATUS</div>
+  <div class="zk-nc-sub">Fill in your assets above to check if Zakat is due on you</div>
+</div>
+
+<!-- RESULT -->
+<div style="margin:0 14px 4px;background:linear-gradient(135deg,rgba(76,175,125,.1),rgba(76,175,125,.04));border:1px solid rgba(76,175,125,.3);border-radius:16px;padding:18px 16px;text-align:center;box-shadow:0 4px 22px rgba(76,175,125,.06)">
+  <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2.5px;color:var(--green);margin-bottom:8px">✦ YOUR TOTAL ZAKAT DUE ✦</div>
+  <div style="display:flex;align-items:baseline;justify-content:center;gap:3px">
+    <span style="font-family:'Cinzel',serif;font-size:16px;color:rgba(76,175,125,.6);vertical-align:super">₹</span>
+    <span class="zk-r-big" id="zk-total">0</span>
+  </div>
+  <div id="zk-total-words" style="font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:var(--muted);margin-top:4px"></div>
+  <div class="zk-bd" id="zk-bd" style="margin-top:12px"></div>
+  <button class="zk-rst" onclick="zReset()">↺ CLEAR ALL FIELDS</button>
+</div>
+<div style="height:16px"></div>
+</div>
+
+<div id="tool-qp" class="tool-panel" style="display:none">
+    <div class="sec-hdr" style="padding-top:18px">📖 QURAN PROGRESS TRACKER</div>
+    <div class="qp-card">
+      <div class="qp-top">
+        <div class="qp-stat"><div class="qp-num" id="qp-done">0</div><div class="qp-lbl">JUZ DONE</div></div>
+        <div class="qp-stat"><div class="qp-num" id="qp-left">30</div><div class="qp-lbl">REMAINING</div></div>
+        <div class="qp-stat"><div class="qp-num" id="qp-pct">0%</div><div class="qp-lbl">COMPLETE</div></div>
+      </div>
+      <div class="qp-pb"><div class="qp-pf" id="qp-pf" style="width:0%"></div></div>
+      <div class="qp-hint">Tap each Juz to mark as completed ✨</div>
+      <div class="qp-grid" id="qp-grid"></div>
+      <button class="qp-reset" onclick="qpReset()">↺ RESET ALL</button>
+    </div>
+  </div>
+
+  <div id="tool-ft" class="tool-panel" style="display:none">
+    <div class="sec-hdr" style="padding-top:18px">💸 FITRANA CALCULATOR</div>
+    <div class="ft-card">
+      <div class="ft-intro">Sadqa-e-Fitr is Wajib on every Muslim who possesses Nisab on Eid day. Pay before Eid prayer.</div>
+      <div class="ft-info-row">
+        <div class="ft-info-box"><div class="ft-info-lbl">Per Person (Wheat)</div><div class="ft-info-val">₹50 – ₹100</div></div>
+        <div class="ft-info-box"><div class="ft-info-lbl">Per Person (Dates)</div><div class="ft-info-val">₹400 – ₹500</div></div>
+      </div>
+      <div class="ft-section-lbl">FAMILY MEMBERS</div>
+      <div class="ft-member-row"><span class="ft-mem-name">👨 Self</span><div class="ft-counter"><div class="ft-cnt-btn" onclick="ftChange('self',-1)">−</div><div class="ft-cnt-val" id="ft-self">1</div><div class="ft-cnt-btn" onclick="ftChange('self',1)">+</div></div></div>
+      <div class="ft-member-row"><span class="ft-mem-name">👩 Spouse</span><div class="ft-counter"><div class="ft-cnt-btn" onclick="ftChange('spouse',-1)">−</div><div class="ft-cnt-val" id="ft-spouse">0</div><div class="ft-cnt-btn" onclick="ftChange('spouse',1)">+</div></div></div>
+      <div class="ft-member-row"><span class="ft-mem-name">👶 Children</span><div class="ft-counter"><div class="ft-cnt-btn" onclick="ftChange('child',-1)">−</div><div class="ft-cnt-val" id="ft-child">0</div><div class="ft-cnt-btn" onclick="ftChange('child',1)">+</div></div></div>
+      <div class="ft-member-row"><span class="ft-mem-name">👴 Parents/Dependants</span><div class="ft-counter"><div class="ft-cnt-btn" onclick="ftChange('dep',-1)">−</div><div class="ft-cnt-val" id="ft-dep">0</div><div class="ft-cnt-btn" onclick="ftChange('dep',1)">+</div></div></div>
+      <div class="ft-rate-row">
+        <div class="ft-rate-lbl">Rate per person:</div>
+        <div class="ft-rate-btns">
+          <div class="ft-rbtn on" id="ft-r1" onclick="ftSetRate(75)">₹75 (Wheat)</div>
+          <div class="ft-rbtn" id="ft-r2" onclick="ftSetRate(450)">₹450 (Dates)</div>
+          <div class="ft-rbtn" id="ft-r3" onclick="ftSetRate(0)">Custom</div>
         </div>
-    </header>
+      </div>
+      <div id="ft-custom-row" style="display:none;margin-bottom:10px">
+        <input class="ft-input" id="ft-custom" type="number" placeholder="Enter amount per person ₹" oninput="ftCalc()">
+      </div>
+      <div class="ft-result">
+        <div class="ft-res-lbl">✦ TOTAL FITRANA DUE ✦</div>
+        <div class="ft-res-val"><span class="ft-rs">₹</span><span id="ft-total">75</span></div>
+        <div class="ft-res-sub" id="ft-breakdown">1 person × ₹75 = ₹75</div>
+        <div class="ft-res-note">Pay before Eid ul-Fitr prayer · 20 March 2026</div>
+      </div>
+    </div>
+  </div>
 
-    <main class="app-content">
-        <!-- #home: Today's Timings & Qibla combined for quick access -->
-        <section id="home" class="module-section active">
-            <div class="card premium-card text-center mb-4 mt-2 today-card">
-                <div class="ornament-top">✦ TODAY'S TIMINGS ✦</div>
-                <div id="todayDate" class="date-header mb-4">Loading date...</div>
-                
-                <div class="prayer-tiles-grid mt-4">
-                    <div class="p-tile"><span class="p-name">Fajr</span><span class="p-time" id="ptFajr">--:--</span></div>
-                    <div class="p-tile"><span class="p-name">Dhuhr</span><span class="p-time" id="ptDhuhr">--:--</span></div>
-                    <div class="p-tile"><span class="p-name">Asr</span><span class="p-time" id="ptAsr">--:--</span></div>
-                    <div class="p-tile"><span class="p-name">Maghrib</span><span class="p-time" id="ptMaghrib">--:--</span></div>
-                    <div class="p-tile"><span class="p-name">Isha</span><span class="p-time" id="ptIsha">--:--</span></div>
-                </div>
-            </div>
+  <!-- ── QIBLA COMPASS ── -->
+  <div id="tool-qb" class="tool-panel" style="display:none">
+    <div class="sec-hdr" style="padding-top:18px">🧭 QIBLA DIRECTION</div>
+    <div class="qibla-wrap">
+      <div class="qibla-info">
+        <div class="qibla-city-row">
+          <div class="qb-city-lbl">📍 YOUR CITY</div>
+          <div class="qb-city-val" id="qb-city">PUNE</div>
+        </div>
+        <div class="qibla-city-row">
+          <div class="qb-city-lbl">🕋 QIBLA BEARING</div>
+          <div class="qb-city-val gold" id="qb-bearing">285°</div>
+        </div>
+        <div class="qibla-city-row">
+          <div class="qb-city-lbl">📐 DISTANCE TO MAKKAH</div>
+          <div class="qb-city-val" id="qb-dist">4,135 km</div>
+        </div>
+      </div>
 
-            <div class="card premium-card mb-4 qibla-card text-center">
-                <div class="ornament-top">✦ QIBLA DIRECTION ✦</div>
-                <p class="text-sm var-text-muted mb-4" id="qiblaInfo">Select a city to calculate</p>
-                <div class="compass-container">
-                    <div class="compass-ring"></div>
-                    <div class="compass-arrow" id="compassArrow">
-                        <svg viewBox="0 0 24 24" fill="var(--accent)" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4 20L12 17L20 20L12 2Z"></path></svg>
-                    </div>
-                </div>
-                <button id="btnCurrentLocation" class="btn btn-outline mt-4">Use Current Location</button>
-            </div>
-        </section>
+      <div class="compass-outer" id="compass-outer" onclick="(function(){window._dbgTaps=(window._dbgTaps||0)+1;if(window._dbgTaps%3===0){var d=document.getElementById('qb-debug');if(d)d.style.display=d.style.display==='none'?'block':'none';}})()">
+        <!-- Rose rotates to keep N pointing real North -->
+        <div class="compass-rose" id="compass-rose">
+          <div class="compass-dir n">N</div>
+          <div class="compass-dir e">E</div>
+          <div class="compass-dir s">S</div>
+          <div class="compass-dir w">W</div>
+          <div class="compass-ring"></div>
+          <div class="compass-center"></div>
+        </div>
+        <!-- Needle is OUTSIDE rose, overlaid - rotates independently to Qibla -->
+        <div class="compass-needle" id="compass-needle">
+          <div class="needle-kaaba">🕋</div>
+          <div class="needle-shaft north"></div>
+          <div class="needle-shaft south"></div>
+        </div>
+      </div>
 
-        <!-- #tools: Trackers & Calculators -->
-        <section id="tools" class="module-section">
-            <div class="card premium-card text-center tasbeeh-card">
-                <div class="ornament-top">✦ TASBEEH COUNTER ✦</div>
-                <div class="tasbeeh-display"><span id="tasbeehCount">0</span></div>
-                <div class="tasbeeh-controls">
-                    <button id="btnTasbeehAdd" class="btn btn-accent btn-large">COUNT</button>
-                    <button id="btnTasbeehReset" class="btn btn-outline">RESET</button>
-                </div>
-            </div>
+      <div id="qb-debug" style="display:none;font-family:monospace;font-size:10px;color:#aaa;padding:4px 8px;background:rgba(0,0,0,.6);border-radius:6px;margin:0 14px 6px;text-align:center;word-break:break-all"></div>
+    <div class="qibla-status">
+        <div class="qb-status-txt" id="qb-status-txt">🔄 Detecting your location...</div>
+        <button id="qb-enable-btn" onclick="requestIOSCompass()" style="display:none;margin:10px auto 0;padding:10px 24px;background:linear-gradient(135deg,#c9a84c,#f0d080);border:none;border-radius:20px;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:1.5px;color:#040a14;cursor:pointer;box-shadow:0 4px 14px rgba(201,168,76,.3)">📱 ENABLE LIVE COMPASS</button>
+      </div>
 
-            <div class="card premium-card">
-                <div class="ornament-top">✦ TARAWEEH TRACKER ✦</div>
-                <p class="text-sm var-text-muted text-center mb-4">Track your 30 Days (20 Rakats daily)</p>
-                <!-- Required explicit ID -->
-                <div class="taraweeh-grid" id="taraweehGrid"></div>
-            </div>
+      <div class="qibla-cities-note">
+        <div class="qb-note-hdr">✦ QIBLA FROM MAJOR CITIES ✦</div>
+        <div class="qb-cities-grid">
+          <div class="qb-city-row2"><span>PUNE</span><span class="qbc-deg">285°</span><span class="qbc-km">4,135 km</span></div>
+          <div class="qb-city-row2"><span>MUMBAI</span><span class="qbc-deg">287°</span><span class="qbc-km">4,161 km</span></div>
+          <div class="qb-city-row2"><span>DELHI</span><span class="qbc-deg">277°</span><span class="qbc-km">3,829 km</span></div>
+          <div class="qb-city-row2"><span>HYDERABAD</span><span class="qbc-deg">282°</span><span class="qbc-km">4,048 km</span></div>
+          <div class="qb-city-row2"><span>LUCKNOW</span><span class="qbc-deg">278°</span><span class="qbc-km">3,700 km</span></div>
+          <div class="qb-city-row2"><span>BANGALORE</span><span class="qbc-deg">283°</span><span class="qbc-km">4,210 km</span></div>
+          <div class="qb-city-row2"><span>CHENNAI</span><span class="qbc-deg">284°</span><span class="qbc-km">4,331 km</span></div>
+          <div class="qb-city-row2"><span>KOLKATA</span><span class="qbc-deg">270°</span><span class="qbc-km">3,818 km</span></div>
+        </div>
+      </div>
 
-            <div class="card premium-card">
-                <div class="ornament-top">✦ QURAN JUZ TRACKER ✦</div>
-                <div class="progress-container mb-4"><div class="progress-bar" id="quranProgress"></div></div>
-                <p class="text-center mb-4"><span class="accent-text"><span id="quranCompleted">0</span> / 30</span> Juz Completed</p>
-                <div class="juz-grid" id="juzGrid"></div>
-            </div>
+      <div class="qb-compass-note">
+        <div>Direction of the Holy Kaaba in Makkah al-Mukarramah</div>
+        <div style="color:var(--gold);margin-top:4px">📱 Allow location & motion for live compass</div>
+      </div>
+    </div>
+  </div>
 
-            <div class="card premium-card mb-4">
-                <div class="ornament-top">✦ ZAKAT CALCULATOR ✦</div>
-                <div class="form-group"><label>Cash & Bank Balances (₹)</label><input type="number" id="zakatCash" class="form-control" placeholder="0"></div>
-                <div class="form-group"><label>Gold Value (₹)</label><input type="number" id="zakatGold" class="form-control" placeholder="0"></div>
-                <div class="form-group"><label>Silver Value (₹)</label><input type="number" id="zakatSilver" class="form-control" placeholder="0"></div>
-                <div class="form-group"><label>Liabilities / Debts (₹)</label><input type="number" id="zakatDebts" class="form-control" placeholder="0"></div>
-                <button id="btnCalculateZakat" class="btn btn-accent w-100 mt-2">CALCULATE ZAKAT (2.5%)</button>
-                <div id="zakatResult" class="calc-result mt-4 hidden"><h3>Total Zakat Payable: <span id="zakatAmount" class="accent-text">₹0</span></h3></div>
-            </div>
+</div>
 
-            <div class="card premium-card">
-                <div class="ornament-top">✦ FITRANA CALCULATOR ✦</div>
-                <div class="form-group"><label>Number of Family Members</label><input type="number" id="fitranaMembers" class="form-control" value="1" min="1"></div>
-                <div class="form-group"><label>Rate per Person (₹)</label><input type="number" id="fitranaRate" class="form-control" value="120"></div>
-                <div class="calc-result text-center mt-4"><h3>Total Fitrana: <span id="fitranaAmount" class="accent-text">₹120</span></h3></div>
-            </div>
 
-            <div class="card premium-card settings-card">
-                <div class="ornament-top">✦ SETTINGS ✦</div>
-                <div class="settings-row">
-                    <div>
-                        <div class="settings-title">Theme</div>
-                        <div class="settings-sub">Dark / Light</div>
-                    </div>
-                    <button id="themeSwitch" class="switch-btn" type="button" role="switch" aria-checked="true" aria-label="Toggle theme">
-                        <span class="switch-btn__thumb"></span>
-                    </button>
-                </div>
-                <div class="settings-row">
-                    <div>
-                        <div class="settings-title">Compact Mode</div>
-                        <div class="settings-sub">Tighter spacing and cards</div>
-                    </div>
-                    <button id="compactSwitch" class="switch-btn" type="button" role="switch" aria-checked="false" aria-label="Toggle compact mode">
-                        <span class="switch-btn__thumb"></span>
-                    </button>
-                </div>
-                <button id="resetDataBtn" class="btn btn-outline w-100 mt-4" type="button">RESET SAVED DATA</button>
-            </div>
-        </section>
+</div>
 
-        <!-- #schedule: Full Month Schedule -->
-        <section id="schedule" class="module-section">
-            <div class="card premium-card">
-                <div class="ornament-top">✦ FULL SCHEDULE ✦</div>
-                <div class="table-responsive">
-                    <table class="schedule-table premium-table">
-                        <thead><tr><th>Day</th><th>Date</th><th>Sehri</th><th>Iftar</th></tr></thead>
-                        <!-- Target Hook ID -->
-                        <tbody id="scheduleBody"></tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
 
-        <!-- #duas: Supplications -->
-        <section id="duas" class="module-section">
-            <div class="card premium-card">
-                <div class="ornament-top">✦ DUAS & SUPPLICATIONS ✦</div>
-                
-                <div class="dua-item">
-                    <h3 class="dua-title">Sehri Dua</h3>
-                    <p class="dua-arabic">وَبِصَوْمِ غَدٍ نَّوَيْتُ مِنْ شَهْرِ رَمَضَانَ</p>
-                    <p class="dua-translit">Wa bisawmi ghadinn nawaiytu min shahri ramadan</p>
-                    <p class="dua-meaning">"I intend to keep the fast for tomorrow in the month of Ramadan"</p>
-                </div>
-                <hr class="dua-divider">
-                <div class="dua-item">
-                    <h3 class="dua-title">Iftar Dua</h3>
-                    <p class="dua-arabic">اللَّهُمَّ اِنِّى لَكَ صُمْتُ وَبِكَ امَنْتُ وَعَلَيْكَ تَوَكَّلْتُ وَعَلَى رِزْقِكَ اَفْطَرْتُ</p>
-                    <p class="dua-translit">Allahumma inni laka sumtu wa bika aamantu wa 'alayka tawakkaltu wa 'ala rizq-ika aftartu</p>
-                    <p class="dua-meaning">"O Allah! I fasted for You and I believe in You and I put my trust in You and I break my fast with Your sustenance"</p>
-                </div>
-            </div>
-        </section>
+<!-- SCHEDULE -->
+<div class="sec" id="sec-sched">
+  <div class="sec-hdr">✦ FULL RAMADAN SCHEDULE ✦</div>
+  <div style="padding:0 14px;margin-bottom:10px">
+    <div class="city-sw" id="sc-sw"></div>
+    <div style="font-family:'Cinzel',serif;font-size:12.5px;letter-spacing:2px;color:var(--gold);text-align:center;margin-top:6px">📍 <span id="sc-city">PUNE</span></div>
+  </div>
+  <div class="sched-wrap">
+    <div class="sched-hdr"><div class="sh">DATE</div><div class="sh">DAY</div><div class="sh">ROZA</div><div class="sh">SEHRI</div><div class="sh">IFTAR</div><div class="sh">LEFT</div></div>
+    <div class="sched-body" id="sched-body"></div>
+  </div>
+  <div class="sec-hdr" style="margin-top:8px">✦ SPECIAL NIGHTS ✦</div>
+  <div class="nights">
+    <div class="ncard"><div><div class="n-name">Nisf ul Ramadan – 15th Night</div><div class="n-desc">Midpoint of the blessed month</div><div class="n-date">4 March 2026</div></div><div class="nbadge" id="nb-15">UPCOMING</div></div>
+    <div class="ncard qadr"><div><div class="n-name">⭐ 21st Night</div><div class="n-desc">Seek Laylatul Qadr on odd nights</div><div class="n-date">10 March 2026</div></div><div class="nbadge" id="nb-21">UPCOMING</div></div>
+    <div class="ncard qadr"><div><div class="n-name">⭐ 23rd Night</div><div class="n-desc">Better than a thousand months</div><div class="n-date">12 March 2026</div></div><div class="nbadge" id="nb-23">UPCOMING</div></div>
+    <div class="ncard qadr"><div><div class="n-name">⭐ 25th Night</div><div class="n-desc">Angels descend with blessings</div><div class="n-date">14 March 2026</div></div><div class="nbadge" id="nb-25">UPCOMING</div></div>
+    <div class="ncard qadr"><div><div class="n-name">⭐ 27th Night – Most Likely</div><div class="n-desc">Most scholars consider this night</div><div class="n-date">16 March 2026</div></div><div class="nbadge" id="nb-27">UPCOMING</div></div>
+    <div class="ncard qadr"><div><div class="n-name">⭐ 29th Night – Last Chance</div><div class="n-desc">Last odd night of Ramadan</div><div class="n-date">18 March 2026</div></div><div class="nbadge" id="nb-29">UPCOMING</div></div>
+  </div>
+</div>
 
-        <!-- #sadqa: Charity -->
-        <section id="sadqa" class="module-section">
-            <div class="card premium-card text-center">
-                <div class="ornament-top">✦ DAILY SADQA ✦</div>
-                <p class="var-text-muted text-sm mb-4">"Charity does not decrease wealth."</p>
-                <div class="sadqa-box">
-                    <p class="mb-4">Did you give charity today?</p>
-                    <div class="tasbeeh-controls">
-                        <button id="btnSadqaYes" class="btn btn-accent w-100">YES, ALHAMDULILLAH</button>
-                    </div>
-                    <div class="mt-4 hidden" id="sadqaThanks">
-                        <span class="accent-text">May Allah accept it!</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+<!-- DUAS -->
+<div class="sec" id="sec-duas">
+  <div class="sec-hdr" style="padding-top:18px">🤲 DUA COLLECTION</div>
 
-    <!-- BOTTOM NAVIGATION (Targeted IDs) -->
-    <nav class="bottom-nav">
-        <button class="b-nav-item active" data-target="home">
-            <span class="b-icon">🏠</span>
-            <span class="b-label">Home</span>
-        </button>
-        <button class="b-nav-item" data-target="tools">
-            <span class="b-icon">⚙️</span>
-            <span class="b-label">Tools</span>
-        </button>
-        <button class="b-nav-item" data-target="schedule">
-            <span class="b-icon">🕌</span>
-            <span class="b-label">Schedule</span>
-        </button>
-        <button class="b-nav-item" data-target="duas">
-            <span class="b-icon">🤲</span>
-            <span class="b-label">Duas</span>
-        </button>
-        <button class="b-nav-item" data-target="sadqa">
-            <span class="b-icon">💝</span>
-            <span class="b-label">Sadqa</span>
-        </button>
-    </nav>
-    
-    <script src="assets/js/app.js"></script>
+  <!-- Dua Category Pills -->
+  <div class="dua-pills" id="dua-pills">
+    <div class="dpill on" id="dp-ashra" onclick="showDuaCat('ashra')">✦ 3 Ashra</div>
+    <div class="dpill" id="dp-daily" onclick="showDuaCat('daily')">🌙 Daily</div>
+    <div class="dpill" id="dp-prayer" onclick="showDuaCat('prayer')">🕌 Prayer</div>
+    <div class="dpill" id="dp-ramadan" onclick="showDuaCat('ramadan')">🌟 Ramadan</div>
+    <div class="dpill" id="dp-life" onclick="showDuaCat('life')">💫 Life</div>
+    <div class="dpill" id="dp-parents" onclick="showDuaCat('parents')">💜 Parents</div>
+    <div class="dpill" id="dp-names" onclick="showDuaCat('names')">✨ 99 Names</div>
+  </div>
+
+  <!-- ── ASHRA DUAS ── -->
+  <div class="dua-cat" id="dcat-ashra">
+    <div class="ashra-banner a1">
+      <div class="ashra-num">1ST</div>
+      <div class="ashra-info"><div class="ashra-title">RAHMAH · MERCY</div><div class="ashra-days">Days 1 – 10</div></div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🌿 DUA OF THE FIRST ASHRA</div>
+      <div class="dc2-ar">يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ</div>
+      <div class="dc2-tr">Ya Hayyu Ya Qayyumu bi rahmatika astagheeth</div>
+      <div class="dc2-me">"O Living, O Self-Sustaining One, I seek help through Your mercy."</div>
+      <div class="dc2-src">— Sahih: Tirmidhi 3524</div>
+    </div>
+    <div class="ashra-banner a2" style="margin-top:12px">
+      <div class="ashra-num">2ND</div>
+      <div class="ashra-info"><div class="ashra-title">MAGHFIRAH · FORGIVENESS</div><div class="ashra-days">Days 11 – 20</div></div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🔥 DUA OF THE SECOND ASHRA</div>
+      <div class="dc2-ar">أَسْتَغْفِرُ اللَّهَ رَبِّي مِنْ كُلِّ ذَنْبٍ وَأَتُوبُ إِلَيْهِ</div>
+      <div class="dc2-tr">Astaghfiru Allaha Rabbi min kulli zambin wa atubu ilayh</div>
+      <div class="dc2-me">"I seek forgiveness of Allah, my Lord, from every sin and I repent to Him."</div>
+      <div class="dc2-src">— Authenticated Hadith</div>
+    </div>
+    <div class="ashra-banner a3" style="margin-top:12px">
+      <div class="ashra-num">3RD</div>
+      <div class="ashra-info"><div class="ashra-title">NIJAT · SALVATION</div><div class="ashra-days">Days 21 – 30</div></div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🛡️ DUA OF THE THIRD ASHRA</div>
+      <div class="dc2-ar">اللَّهُمَّ أَجِرْنِي مِنَ النَّارِ</div>
+      <div class="dc2-tr">Allahumma ajirni minan-nar</div>
+      <div class="dc2-me">"O Allah, save me from the Fire."</div>
+      <div class="dc2-src">— Authenticated Hadith</div>
+    </div>
+  </div>
+
+  <!-- ── DAILY DUAS ── -->
+  <div class="dua-cat" id="dcat-daily" style="display:none">
+    <div class="dua-card2">
+      <div class="dc2-lbl">🌙 SEHRI NIYYAH</div>
+      <div class="dc2-ar">وَبِصَوْمِ غَدٍ نَّوَيْتُ مِنْ شَهْرِ رَمَضَانَ</div>
+      <div class="dc2-tr">Wa bisawmi ghadin nawaytu min shahri Ramadan</div>
+      <div class="dc2-me">"I intend to keep the fast tomorrow in the month of Ramadan."</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">☀️ IFTAR DUA</div>
+      <div class="dc2-ar">اللَّهُمَّ لَكَ صُمْتُ وَعَلَى رِزْقِكَ أَفْطَرْتُ</div>
+      <div class="dc2-tr">Allahumma laka sumtu wa ala rizqika aftartu</div>
+      <div class="dc2-me">"O Allah, for You I have fasted and with Your provision I break my fast."</div>
+      <div class="dc2-src">— Abu Dawud 2358</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🌅 DUA IN THE MORNING (SABAH)</div>
+      <div class="dc2-ar">اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ</div>
+      <div class="dc2-tr">Allahumma bika asbahnaa wa bika amsaynaa wa bika nahyaa wa bika namootu wa ilaykan-nushoor</div>
+      <div class="dc2-me">"O Allah, by You we enter the morning and by You we enter the evening, by You we live and by You we die, and to You is the resurrection."</div>
+      <div class="dc2-src">— Abu Dawud 5068</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🌙 DUA IN THE EVENING (MASA)</div>
+      <div class="dc2-ar">اللَّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ</div>
+      <div class="dc2-tr">Allahumma bika amsaynaa wa bika asbahnaa wa bika nahyaa wa bika namootu wa ilaykal-maseer</div>
+      <div class="dc2-me">"O Allah, by You we enter the evening and by You we enter the morning, by You we live and by You we die, and to You is the final return."</div>
+      <div class="dc2-src">— Abu Dawud 5068</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">😴 BEFORE SLEEPING</div>
+      <div class="dc2-ar">بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا</div>
+      <div class="dc2-tr">Bismika Allahumma amootu wa ahyaa</div>
+      <div class="dc2-me">"In Your name, O Allah, I die and I live."</div>
+      <div class="dc2-src">— Bukhari 6312</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🌄 WAKING UP</div>
+      <div class="dc2-ar">الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ</div>
+      <div class="dc2-tr">Alhamdulillahil-ladhi ahyaana ba'da ma amaatana wa ilayhin-nushoor</div>
+      <div class="dc2-me">"Praise be to Allah who gave us life after causing us to die, and to Him is the resurrection."</div>
+      <div class="dc2-src">— Bukhari 6312</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🍽️ BEFORE EATING</div>
+      <div class="dc2-ar">بِسْمِ اللَّهِ وَعَلَى بَرَكَةِ اللَّهِ</div>
+      <div class="dc2-tr">Bismillahi wa ala barakatillah</div>
+      <div class="dc2-me">"In the name of Allah and with the blessings of Allah."</div>
+      <div class="dc2-src">— Abu Dawud 3767</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🚪 LEAVING HOME</div>
+      <div class="dc2-ar">بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</div>
+      <div class="dc2-tr">Bismillahi tawakkaltu 'alallahi wa la hawla wa la quwwata illa billah</div>
+      <div class="dc2-me">"In the name of Allah, I place my trust in Allah, and there is no power or strength except with Allah."</div>
+      <div class="dc2-src">— Abu Dawud 5095</div>
+    </div>
+  </div>
+
+  <!-- ── PRAYER DUAS ── -->
+  <div class="dua-cat" id="dcat-prayer" style="display:none">
+    <div class="dua-card2 tw-style">
+      <div class="dc2-lbl">⭐ TARAWEEH DUA (AFTER EVERY 4 RAKATS)</div>
+      <div class="dc2-ar">سُبْحَانَ ذِي الْمُلْكِ وَالْمَلَكُوتِ سُبْحَانَ ذِي الْعِزَّةِ وَالْعَظَمَةِ وَالْهَيْبَةِ وَالْقُدْرَةِ وَالْكِبْرِيَاءِ وَالْجَبَرُوتِ سُبْحَانَ الْمَلِكِ الْحَيِّ الَّذِي لَا يَنَامُ وَلَا يَمُوتُ</div>
+      <div class="dc2-tr">Subhana Dhil Mulki wal Malakut, Subhana Dhil Izzati wal Azhamati wal Haibati wal Qudrati wal Kibriya'i wal Jabarut. Subhanal Malikil Hayyil Ladhi la yanamu wa la yamut.</div>
+      <div class="dc2-me">"Glory be to the Owner of kingdoms and dominions. Glory be to the Owner of might, greatness, awe, power, pride and grandeur. Glory be to the Eternal Living King who neither sleeps nor dies."</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🕌 ENTERING MOSQUE</div>
+      <div class="dc2-ar">اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ</div>
+      <div class="dc2-tr">Allahummaf-tah li abwaba rahmatik</div>
+      <div class="dc2-me">"O Allah, open the gates of Your mercy for me."</div>
+      <div class="dc2-src">— Muslim 713</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🚶 LEAVING MOSQUE</div>
+      <div class="dc2-ar">اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ</div>
+      <div class="dc2-tr">Allahumma inni as'aluka min fadlik</div>
+      <div class="dc2-me">"O Allah, I ask You of Your bounty."</div>
+      <div class="dc2-src">— Muslim 713</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">📿 SAYYIDUL ISTIGHFAR</div>
+      <div class="dc2-ar">اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنتَ خَلَقْتَنِي وَأَنَا عَبْدُكَ وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ</div>
+      <div class="dc2-tr">Allahumma anta Rabbi la ilaha illa anta, Khalaqtani wa ana abduka, wa ana ala ahdika wa wa'dika mastata'tu, a'udhu bika min sharri ma sana'tu</div>
+      <div class="dc2-me">"O Allah, You are my Lord. None has the right to be worshipped but You. You created me and I am Your servant, and I abide by Your covenant and promise as best I can. I seek refuge in You from the evil of what I have done."</div>
+      <div class="dc2-src">— Bukhari 6306</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🙏 AFTER SALAH (TASBEEH)</div>
+      <div class="dc2-ar">سُبْحَانَ اللَّهِ × ٣٣ · الْحَمْدُ لِلَّهِ × ٣٣ · اللَّهُ أَكْبَرُ × ٣٣</div>
+      <div class="dc2-tr">Subhanallah × 33 · Alhamdulillah × 33 · Allahu Akbar × 33</div>
+      <div class="dc2-me">"Glory be to Allah (33×), Praise be to Allah (33×), Allah is the Greatest (33×) — completing to 100 with: La ilaha illallahu wahdahu la sharika lahu, lahul mulku wa lahul hamdu, wa huwa ala kulli shay'in qadir."</div>
+      <div class="dc2-src">— Muslim 597</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">📖 DUA BEFORE QURAN RECITATION</div>
+      <div class="dc2-ar">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</div>
+      <div class="dc2-tr">A'udhu billahi minash-shaytanir rajeem</div>
+      <div class="dc2-me">"I seek refuge with Allah from the accursed Shaytan."</div>
+      <div class="dc2-src">— Quran 16:98</div>
+    </div>
+  </div>
+
+  <!-- ── RAMADAN DUAS ── -->
+  <div class="dua-cat" id="dcat-ramadan" style="display:none">
+    <div class="dua-card2 qadr-style">
+      <div class="dc2-lbl">⭐ LAYLATUL QADR DUA</div>
+      <div class="dc2-ar">اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي</div>
+      <div class="dc2-tr">Allahumma innaka afuwwun tuhibbul afwa fa'fu anni</div>
+      <div class="dc2-me">"O Allah, You are Forgiving and You love forgiveness, so forgive me."</div>
+      <div class="dc2-src">— Tirmidhi 3513 · Sahih</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🌙 DUA TO SEE RAMADAN</div>
+      <div class="dc2-ar">اللَّهُمَّ بَلِّغْنَا رَمَضَانَ وَتَقَبَّلْ مِنَّا صِيَامَنَا وَقِيَامَنَا</div>
+      <div class="dc2-tr">Allahumma ballighna Ramadana wa taqabbal minna siyamana wa qiyamana</div>
+      <div class="dc2-me">"O Allah, let us reach Ramadan and accept our fasting and our night prayers."</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🤲 ACCEPTANCE OF DEEDS</div>
+      <div class="dc2-ar">رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ</div>
+      <div class="dc2-tr">Rabbana taqabbal minna innaka antas-sami'ul 'aleem</div>
+      <div class="dc2-me">"Our Lord, accept from us. Indeed, You are the Hearing, the Knowing."</div>
+      <div class="dc2-src">— Quran 2:127</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">💎 DUA FOR JANNAH</div>
+      <div class="dc2-ar">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْجَنَّةَ وَأَعُوذُ بِكَ مِنَ النَّارِ</div>
+      <div class="dc2-tr">Allahumma inni as'alukal-jannata wa a'udhu bika minan-nar</div>
+      <div class="dc2-me">"O Allah, I ask You for Paradise and I seek refuge with You from the Fire."</div>
+      <div class="dc2-src">— Abu Dawud 792</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🌟 DUA FOR TAQWA</div>
+      <div class="dc2-ar">اللَّهُمَّ آتِ نَفْسِي تَقْوَاهَا وَزَكِّهَا أَنتَ خَيْرُ مَن زَكَّاهَا</div>
+      <div class="dc2-tr">Allahumma ati nafsi taqwaha wa zakkiha anta khayru man zakkaha</div>
+      <div class="dc2-me">"O Allah, grant my soul its piety and purify it, for You are the best of those who purify it."</div>
+      <div class="dc2-src">— Muslim 2722</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🤲 ENDING RAMADAN</div>
+      <div class="dc2-ar">اللَّهُمَّ تَقَبَّلْ مِنَّا صِيَامَنَا وَقِيَامَنَا وَرُكُوعَنَا وَسُجُودَنَا</div>
+      <div class="dc2-tr">Allahumma taqabbal minna siyamana wa qiyamana wa ruku'ana wa sujoodana</div>
+      <div class="dc2-me">"O Allah, accept from us our fasting, our night prayers, our bowing, and our prostrations."</div>
+    </div>
+  </div>
+
+  <!-- ── LIFE DUAS ── -->
+  <div class="dua-cat" id="dcat-life" style="display:none">
+    <div class="dua-card2">
+      <div class="dc2-lbl">😰 DUA IN DISTRESS</div>
+      <div class="dc2-ar">لَا إِلَهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ</div>
+      <div class="dc2-tr">La ilaha illa anta subhanaka inni kuntu minadh-dhalimeen</div>
+      <div class="dc2-me">"There is no god but You, glorified be You. Truly I have been of the wrongdoers." (Dua of Prophet Yunus AS)</div>
+      <div class="dc2-src">— Quran 21:87 · Tirmidhi 3505</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">💚 DUA FOR HEALTH</div>
+      <div class="dc2-ar">اللَّهُمَّ عَافِنِي فِي بَدَنِي اللَّهُمَّ عَافِنِي فِي سَمْعِي اللَّهُمَّ عَافِنِي فِي بَصَرِي</div>
+      <div class="dc2-tr">Allahumma 'afini fi badani, Allahumma 'afini fi sam'i, Allahumma 'afini fi basari</div>
+      <div class="dc2-me">"O Allah, grant health to my body. O Allah, grant health to my hearing. O Allah, grant health to my eyesight."</div>
+      <div class="dc2-src">— Abu Dawud 5090</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">💰 DUA FOR RIZQ (PROVISION)</div>
+      <div class="dc2-ar">اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ وَأَغْنِنِي بِفَضْلِكَ عَمَّن سِوَاكَ</div>
+      <div class="dc2-tr">Allahummak-fini bihalalika 'an haramika wa aghnini bifadlika 'amman siwak</div>
+      <div class="dc2-me">"O Allah, suffice me with what You have made lawful so I have no need of what You have made unlawful, and make me independent of all others through Your bounty."</div>
+      <div class="dc2-src">— Tirmidhi 3563</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🧠 DUA FOR KNOWLEDGE</div>
+      <div class="dc2-ar">رَبِّ زِدْنِي عِلْمًا</div>
+      <div class="dc2-tr">Rabbi zidni 'ilma</div>
+      <div class="dc2-me">"My Lord, increase me in knowledge."</div>
+      <div class="dc2-src">— Quran 20:114</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">😟 DUA FOR ANXIETY & GRIEF</div>
+      <div class="dc2-ar">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ وَالْعَجْزِ وَالْكَسَلِ</div>
+      <div class="dc2-tr">Allahumma inni a'udhu bika minal-hammi wal-hazani wal-'ajzi wal-kasali</div>
+      <div class="dc2-me">"O Allah, I seek refuge in You from worry and grief, from incapacity and laziness."</div>
+      <div class="dc2-src">— Bukhari 2893</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🌈 DUA FOR GUIDANCE</div>
+      <div class="dc2-ar">اللَّهُمَّ اهْدِنِي وَسَدِّدْنِي</div>
+      <div class="dc2-tr">Allahumma-hdini wa saddidni</div>
+      <div class="dc2-me">"O Allah, guide me and keep me on the straight path."</div>
+      <div class="dc2-src">— Muslim 2725</div>
+    </div>
+    <div class="dua-card2">
+      <div class="dc2-lbl">🔒 DUA FOR PROTECTION (MORNING)</div>
+      <div class="dc2-ar">بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ</div>
+      <div class="dc2-tr">Bismillahil-ladhi la yadurru ma'asmihi shay'un fil-ardi wa la fis-sama'i wa huwas-sami'ul-'aleem</div>
+      <div class="dc2-me">"In the name of Allah with whose name nothing can cause harm in the earth or the heavens, and He is the All-Hearing, the All-Knowing."</div>
+      <div class="dc2-src">— Abu Dawud 5088 · Sahih</div>
+    </div>
+  </div>
+
+  <!-- ── PARENTS DUAS ── -->
+  <div class="dua-cat" id="dcat-parents" style="display:none">
+    <div class="dua-card2 parents-style">
+      <div class="dc2-lbl">💜 DUA FOR DECEASED PARENTS</div>
+      <div class="dc2-ar">رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ وَارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا</div>
+      <div class="dc2-tr">Rabbi ghfir li wa li waalidayya warhamhuma kama rabbayaani saghira</div>
+      <div class="dc2-me">"My Lord, forgive me and my parents and have mercy upon them as they brought me up when I was small."</div>
+      <div class="dc2-src">— Quran 17:24</div>
+    </div>
+    <div class="dua-card2 parents-style">
+      <div class="dc2-lbl">💜 DUA FOR A MOTHER'S SOUL</div>
+      <div class="dc2-ar">اللَّهُمَّ اغْفِرْ لَهَا وَارْحَمْهَا وَعَافِهَا وَاعْفُ عَنْهَا وَأَكْرِمْ نُزُلَهَا وَنَوِّرْ قَبْرَهَا وَأَدْخِلْهَا الْجَنَّةَ الْفِرْدَوْسَ</div>
+      <div class="dc2-tr">Allahumma-ghfir laha warhamha wa 'afiha wa'fu 'anha wa akrim nuzulaha wa nawwir qabraha wa adkhilhal-jannatil-firdaws</div>
+      <div class="dc2-me">"O Allah, forgive her, have mercy on her, grant her wellbeing, pardon her, honour her resting place, illuminate her grave, and enter her into Jannatul Firdaus."</div>
+      <div class="dc2-src">— From Salat ul Janazah</div>
+    </div>
+    <div class="dua-card2 parents-style">
+      <div class="dc2-lbl">🤲 DUA FOR LIVING PARENTS</div>
+      <div class="dc2-ar">رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا</div>
+      <div class="dc2-tr">Rabbi irhamhuma kama rabbayaani saghira</div>
+      <div class="dc2-me">"My Lord, have mercy on them as they raised me when I was young."</div>
+      <div class="dc2-src">— Quran 17:24</div>
+    </div>
+    <div class="dua-card2 parents-style">
+      <div class="dc2-lbl">💫 DUA FOR FORGIVENESS OF PARENTS</div>
+      <div class="dc2-ar">رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ</div>
+      <div class="dc2-tr">Rabbana-ghfir li wa li waalidayya wa lil-mu'mineena yawma yaqoomul-hisaab</div>
+      <div class="dc2-me">"Our Lord, forgive me and my parents and the believers on the Day when the account is established."</div>
+      <div class="dc2-src">— Quran 14:41</div>
+    </div>
+    <div class="dua-card2 parents-style">
+      <div class="dc2-lbl">💖 DUA FOR SADQA-E-JARIYA</div>
+      <div class="dc2-ar">اللَّهُمَّ اجْعَلْ عَمَلِي صَالِحًا وَاجْعَلْهُ خَالِصًا لِوَجْهِكَ وَلَا تَجْعَلْ لِأَحَدٍ فِيهِ شَيْئًا</div>
+      <div class="dc2-tr">Allahumma-j'al 'amali salihan waj-'alhu khalisatan li-wajhika wa la taj-'al li-ahadin fihi shay'a</div>
+      <div class="dc2-me">"O Allah, make my deeds righteous and make them purely for Your sake, and do not make anyone else have a share in them."</div>
+      <div class="dc2-src">— Authenticated</div>
+    </div>
+  </div>
+
+
+  <!-- ── 99 NAMES OF ALLAH ── -->
+  <div class="dua-cat" id="dcat-names" style="display:none">
+    <div class="names-intro">
+      <div class="names-intro-ar">وَلِلَّهِ الْأَسْمَاءُ الْحُسْنَىٰ فَادْعُوهُ بِهَا</div>
+      <div class="names-intro-tr">"And to Allah belong the most beautiful names, so call upon Him by them."</div>
+      <div class="names-intro-ref">— Quran 7:180</div>
+      <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(201,168,76,.55);margin-top:8px">✦ 99 NAMES · ASMA UL HUSNA ✦</div>
+    </div>
+    <div class="names-grid">
+      <div class="name-card"><div class="nc-num">01</div><div class="nc-ar">اللَّه</div><div class="nc-en">ALLAH</div><div class="nc-me">The One God, the Supreme Being</div></div>
+      <div class="name-card"><div class="nc-num">02</div><div class="nc-ar">الرَّحْمَٰن</div><div class="nc-en">AR-RAHMAN</div><div class="nc-me">The Most Gracious — merciful to all</div></div>
+      <div class="name-card"><div class="nc-num">03</div><div class="nc-ar">الرَّحِيم</div><div class="nc-en">AR-RAHEEM</div><div class="nc-me">The Most Merciful — to believers</div></div>
+      <div class="name-card"><div class="nc-num">04</div><div class="nc-ar">الْمَلِك</div><div class="nc-en">AL-MALIK</div><div class="nc-me">The King — of all creation</div></div>
+      <div class="name-card"><div class="nc-num">05</div><div class="nc-ar">الْقُدُّوس</div><div class="nc-en">AL-QUDDUS</div><div class="nc-me">The Most Holy — pure and perfect</div></div>
+      <div class="name-card"><div class="nc-num">06</div><div class="nc-ar">السَّلَام</div><div class="nc-en">AS-SALAM</div><div class="nc-me">The Source of Peace — perfection</div></div>
+      <div class="name-card"><div class="nc-num">07</div><div class="nc-ar">الْمُؤْمِن</div><div class="nc-en">AL-MU'MIN</div><div class="nc-me">The Guardian of Faith — grants security</div></div>
+      <div class="name-card"><div class="nc-num">08</div><div class="nc-ar">الْمُهَيْمِن</div><div class="nc-en">AL-MUHAYMIN</div><div class="nc-me">The Protector — watches over all</div></div>
+      <div class="name-card"><div class="nc-num">09</div><div class="nc-ar">الْعَزِيز</div><div class="nc-en">AL-AZIZ</div><div class="nc-me">The Almighty — undefeatable</div></div>
+      <div class="name-card"><div class="nc-num">10</div><div class="nc-ar">الْجَبَّار</div><div class="nc-en">AL-JABBAR</div><div class="nc-me">The Compeller — restores all things</div></div>
+      <div class="name-card"><div class="nc-num">11</div><div class="nc-ar">الْمُتَكَبِّر</div><div class="nc-en">AL-MUTAKABBIR</div><div class="nc-me">The Greatest — supreme in majesty</div></div>
+      <div class="name-card"><div class="nc-num">12</div><div class="nc-ar">الْخَالِق</div><div class="nc-en">AL-KHALIQ</div><div class="nc-me">The Creator — brings from nothing</div></div>
+      <div class="name-card"><div class="nc-num">13</div><div class="nc-ar">الْبَارِئ</div><div class="nc-en">AL-BARI'</div><div class="nc-me">The Originator — creates with balance</div></div>
+      <div class="name-card"><div class="nc-num">14</div><div class="nc-ar">الْمُصَوِّر</div><div class="nc-en">AL-MUSAWWIR</div><div class="nc-me">The Fashioner — shapes all forms</div></div>
+      <div class="name-card"><div class="nc-num">15</div><div class="nc-ar">الْغَفَّار</div><div class="nc-en">AL-GHAFFAR</div><div class="nc-me">The Forgiving — forgives repeatedly</div></div>
+      <div class="name-card"><div class="nc-num">16</div><div class="nc-ar">الْقَهَّار</div><div class="nc-en">AL-QAHHAR</div><div class="nc-me">The Subduer — dominates everything</div></div>
+      <div class="name-card"><div class="nc-num">17</div><div class="nc-ar">الْوَهَّاب</div><div class="nc-en">AL-WAHHAB</div><div class="nc-me">The Bestower — gives freely</div></div>
+      <div class="name-card"><div class="nc-num">18</div><div class="nc-ar">الرَّزَّاق</div><div class="nc-en">AR-RAZZAQ</div><div class="nc-me">The Provider — sustains all creation</div></div>
+      <div class="name-card"><div class="nc-num">19</div><div class="nc-ar">الْفَتَّاح</div><div class="nc-en">AL-FATTAH</div><div class="nc-me">The Opener — opens all closed doors</div></div>
+      <div class="name-card"><div class="nc-num">20</div><div class="nc-ar">الْعَلِيم</div><div class="nc-en">AL-ALIM</div><div class="nc-me">The All-Knowing — knows everything</div></div>
+      <div class="name-card"><div class="nc-num">21</div><div class="nc-ar">الْقَابِض</div><div class="nc-en">AL-QABID</div><div class="nc-me">The Withholder — takes away wisely</div></div>
+      <div class="name-card"><div class="nc-num">22</div><div class="nc-ar">الْبَاسِط</div><div class="nc-en">AL-BASIT</div><div class="nc-me">The Extender — gives in abundance</div></div>
+      <div class="name-card"><div class="nc-num">23</div><div class="nc-ar">الْخَافِض</div><div class="nc-en">AL-KHAFID</div><div class="nc-me">The Abaser — humbles the arrogant</div></div>
+      <div class="name-card"><div class="nc-num">24</div><div class="nc-ar">الرَّافِع</div><div class="nc-en">AR-RAFI'</div><div class="nc-me">The Exalter — raises the righteous</div></div>
+      <div class="name-card"><div class="nc-num">25</div><div class="nc-ar">الْمُعِزّ</div><div class="nc-en">AL-MU'IZZ</div><div class="nc-me">The Honourer — grants dignity</div></div>
+      <div class="name-card"><div class="nc-num">26</div><div class="nc-ar">الْمُذِلّ</div><div class="nc-en">AL-MUDHILL</div><div class="nc-me">The Humiliator — disgraces the wicked</div></div>
+      <div class="name-card"><div class="nc-num">27</div><div class="nc-ar">السَّمِيع</div><div class="nc-en">AS-SAMI'</div><div class="nc-me">The All-Hearing — hears every word</div></div>
+      <div class="name-card"><div class="nc-num">28</div><div class="nc-ar">الْبَصِير</div><div class="nc-en">AL-BASIR</div><div class="nc-me">The All-Seeing — sees everything</div></div>
+      <div class="name-card"><div class="nc-num">29</div><div class="nc-ar">الْحَكَم</div><div class="nc-en">AL-HAKAM</div><div class="nc-me">The Judge — ultimate arbitrator</div></div>
+      <div class="name-card"><div class="nc-num">30</div><div class="nc-ar">الْعَدْل</div><div class="nc-en">AL-ADL</div><div class="nc-me">The Just — perfectly fair always</div></div>
+      <div class="name-card"><div class="nc-num">31</div><div class="nc-ar">اللَّطِيف</div><div class="nc-en">AL-LATIF</div><div class="nc-me">The Subtle One — kind and gentle</div></div>
+      <div class="name-card"><div class="nc-num">32</div><div class="nc-ar">الْخَبِير</div><div class="nc-en">AL-KHABIR</div><div class="nc-me">The All-Aware — knows the hidden</div></div>
+      <div class="name-card"><div class="nc-num">33</div><div class="nc-ar">الْحَلِيم</div><div class="nc-en">AL-HALIM</div><div class="nc-me">The Forbearing — slow to anger</div></div>
+      <div class="name-card"><div class="nc-num">34</div><div class="nc-ar">الْعَظِيم</div><div class="nc-en">AL-AZIM</div><div class="nc-me">The Magnificent — infinitely great</div></div>
+      <div class="name-card"><div class="nc-num">35</div><div class="nc-ar">الْغَفُور</div><div class="nc-en">AL-GHAFUR</div><div class="nc-me">The All-Forgiving — pardons sins</div></div>
+      <div class="name-card"><div class="nc-num">36</div><div class="nc-ar">الشَّكُور</div><div class="nc-en">ASH-SHAKUR</div><div class="nc-me">The Grateful — rewards small deeds</div></div>
+      <div class="name-card"><div class="nc-num">37</div><div class="nc-ar">الْعَلِيّ</div><div class="nc-en">AL-ALI</div><div class="nc-me">The Most High — above everything</div></div>
+      <div class="name-card"><div class="nc-num">38</div><div class="nc-ar">الْكَبِير</div><div class="nc-en">AL-KABIR</div><div class="nc-me">The Most Great — incomparably great</div></div>
+      <div class="name-card"><div class="nc-num">39</div><div class="nc-ar">الْحَفِيظ</div><div class="nc-en">AL-HAFIZ</div><div class="nc-me">The Preserver — protects all things</div></div>
+      <div class="name-card"><div class="nc-num">40</div><div class="nc-ar">الْمُقِيت</div><div class="nc-en">AL-MUQIT</div><div class="nc-me">The Sustainer — nourishes all creation</div></div>
+      <div class="name-card"><div class="nc-num">41</div><div class="nc-ar">الْحَسِيب</div><div class="nc-en">AL-HASIB</div><div class="nc-me">The Reckoner — sufficient for account</div></div>
+      <div class="name-card"><div class="nc-num">42</div><div class="nc-ar">الْجَلِيل</div><div class="nc-en">AL-JALIL</div><div class="nc-me">The Majestic — glorified and exalted</div></div>
+      <div class="name-card"><div class="nc-num">43</div><div class="nc-ar">الْكَرِيم</div><div class="nc-en">AL-KARIM</div><div class="nc-me">The Generous — bestows great honour</div></div>
+      <div class="name-card"><div class="nc-num">44</div><div class="nc-ar">الرَّقِيب</div><div class="nc-en">AR-RAQIB</div><div class="nc-me">The Watchful — ever-observant</div></div>
+      <div class="name-card"><div class="nc-num">45</div><div class="nc-ar">الْمُجِيب</div><div class="nc-en">AL-MUJIB</div><div class="nc-me">The Responder — answers all prayers</div></div>
+      <div class="name-card"><div class="nc-num">46</div><div class="nc-ar">الْوَاسِع</div><div class="nc-en">AL-WASI'</div><div class="nc-me">The Vast — unlimited in every way</div></div>
+      <div class="name-card"><div class="nc-num">47</div><div class="nc-ar">الْحَكِيم</div><div class="nc-en">AL-HAKIM</div><div class="nc-me">The Wise — perfect in wisdom</div></div>
+      <div class="name-card"><div class="nc-num">48</div><div class="nc-ar">الْوَدُود</div><div class="nc-en">AL-WADUD</div><div class="nc-me">The Loving — deeply loves believers</div></div>
+      <div class="name-card"><div class="nc-num">49</div><div class="nc-ar">الْمَجِيد</div><div class="nc-en">AL-MAJID</div><div class="nc-me">The Glorious — noble and splendid</div></div>
+      <div class="name-card"><div class="nc-num">50</div><div class="nc-ar">الْبَاعِث</div><div class="nc-en">AL-BA'ITH</div><div class="nc-me">The Resurrector — raises the dead</div></div>
+      <div class="name-card"><div class="nc-num">51</div><div class="nc-ar">الشَّهِيد</div><div class="nc-en">ASH-SHAHID</div><div class="nc-me">The Witness — present everywhere</div></div>
+      <div class="name-card"><div class="nc-num">52</div><div class="nc-ar">الْحَقّ</div><div class="nc-en">AL-HAQQ</div><div class="nc-me">The Truth — absolute reality</div></div>
+      <div class="name-card"><div class="nc-num">53</div><div class="nc-ar">الْوَكِيل</div><div class="nc-en">AL-WAKIL</div><div class="nc-me">The Trustee — best to rely upon</div></div>
+      <div class="name-card"><div class="nc-num">54</div><div class="nc-ar">الْقَوِيّ</div><div class="nc-en">AL-QAWIYY</div><div class="nc-me">The All-Strong — infinite strength</div></div>
+      <div class="name-card"><div class="nc-num">55</div><div class="nc-ar">الْمَتِين</div><div class="nc-en">AL-MATIN</div><div class="nc-me">The Firm — unshakeable in power</div></div>
+      <div class="name-card"><div class="nc-num">56</div><div class="nc-ar">الْوَلِيّ</div><div class="nc-en">AL-WALIYY</div><div class="nc-me">The Protector — guardian of believers</div></div>
+      <div class="name-card"><div class="nc-num">57</div><div class="nc-ar">الْحَمِيد</div><div class="nc-en">AL-HAMID</div><div class="nc-me">The Praiseworthy — deserves all praise</div></div>
+      <div class="name-card"><div class="nc-num">58</div><div class="nc-ar">الْمُحْصِي</div><div class="nc-en">AL-MUHSI</div><div class="nc-me">The Counter — records everything</div></div>
+      <div class="name-card"><div class="nc-num">59</div><div class="nc-ar">الْمُبْدِئ</div><div class="nc-en">AL-MUBDI'</div><div class="nc-me">The Originator — creates anew</div></div>
+      <div class="name-card"><div class="nc-num">60</div><div class="nc-ar">الْمُعِيد</div><div class="nc-en">AL-MUID</div><div class="nc-me">The Restorer — returns all things</div></div>
+      <div class="name-card"><div class="nc-num">61</div><div class="nc-ar">الْمُحْيِي</div><div class="nc-en">AL-MUHYI</div><div class="nc-me">The Giver of Life — gives and restores</div></div>
+      <div class="name-card"><div class="nc-num">62</div><div class="nc-ar">الْمُمِيت</div><div class="nc-en">AL-MUMIT</div><div class="nc-me">The Bringer of Death — by His will</div></div>
+      <div class="name-card"><div class="nc-num">63</div><div class="nc-ar">الْحَيّ</div><div class="nc-en">AL-HAYY</div><div class="nc-me">The Ever-Living — never dies</div></div>
+      <div class="name-card"><div class="nc-num">64</div><div class="nc-ar">الْقَيُّوم</div><div class="nc-en">AL-QAYYUM</div><div class="nc-me">The Self-Sustaining — sustains all</div></div>
+      <div class="name-card"><div class="nc-num">65</div><div class="nc-ar">الْوَاجِد</div><div class="nc-en">AL-WAJID</div><div class="nc-me">The Finder — has all that is needed</div></div>
+      <div class="name-card"><div class="nc-num">66</div><div class="nc-ar">الْمَاجِد</div><div class="nc-en">AL-MAJID</div><div class="nc-me">The Noble — of great honour</div></div>
+      <div class="name-card"><div class="nc-num">67</div><div class="nc-ar">الْوَاحِد</div><div class="nc-en">AL-WAHID</div><div class="nc-me">The One — singular in all ways</div></div>
+      <div class="name-card"><div class="nc-num">68</div><div class="nc-ar">الْأَحَد</div><div class="nc-en">AL-AHAD</div><div class="nc-me">The Unique — absolutely one</div></div>
+      <div class="name-card"><div class="nc-num">69</div><div class="nc-ar">الصَّمَد</div><div class="nc-en">AS-SAMAD</div><div class="nc-me">The Eternal — all depend on Him</div></div>
+      <div class="name-card"><div class="nc-num">70</div><div class="nc-ar">الْقَادِر</div><div class="nc-en">AL-QADIR</div><div class="nc-me">The All-Capable — does all things</div></div>
+      <div class="name-card"><div class="nc-num">71</div><div class="nc-ar">الْمُقْتَدِر</div><div class="nc-en">AL-MUQTADIR</div><div class="nc-me">The Powerful — supreme authority</div></div>
+      <div class="name-card"><div class="nc-num">72</div><div class="nc-ar">الْمُقَدِّم</div><div class="nc-en">AL-MUQADDIM</div><div class="nc-me">The Expediter — brings forward</div></div>
+      <div class="name-card"><div class="nc-num">73</div><div class="nc-ar">الْمُؤَخِّر</div><div class="nc-en">AL-MU'AKHKHIR</div><div class="nc-me">The Delayer — puts things back wisely</div></div>
+      <div class="name-card"><div class="nc-num">74</div><div class="nc-ar">الْأَوَّل</div><div class="nc-en">AL-AWWAL</div><div class="nc-me">The First — before all existence</div></div>
+      <div class="name-card"><div class="nc-num">75</div><div class="nc-ar">الْآخِر</div><div class="nc-en">AL-AKHIR</div><div class="nc-me">The Last — after all else ends</div></div>
+      <div class="name-card"><div class="nc-num">76</div><div class="nc-ar">الظَّاهِر</div><div class="nc-en">AZ-ZAHIR</div><div class="nc-me">The Manifest — evident in creation</div></div>
+      <div class="name-card"><div class="nc-num">77</div><div class="nc-ar">الْبَاطِن</div><div class="nc-en">AL-BATIN</div><div class="nc-me">The Hidden — beyond comprehension</div></div>
+      <div class="name-card"><div class="nc-num">78</div><div class="nc-ar">الْوَالِي</div><div class="nc-en">AL-WALI</div><div class="nc-me">The Governing One — manages all</div></div>
+      <div class="name-card"><div class="nc-num">79</div><div class="nc-ar">الْمُتَعَالِ</div><div class="nc-en">AL-MUTA'ALI</div><div class="nc-me">The Self-Exalted — above all limits</div></div>
+      <div class="name-card"><div class="nc-num">80</div><div class="nc-ar">الْبَرّ</div><div class="nc-en">AL-BARR</div><div class="nc-me">The Source of Goodness — kind</div></div>
+      <div class="name-card"><div class="nc-num">81</div><div class="nc-ar">التَّوَّاب</div><div class="nc-en">AT-TAWWAB</div><div class="nc-me">The Acceptor of Repentance — forgives</div></div>
+      <div class="name-card"><div class="nc-num">82</div><div class="nc-ar">الْمُنْتَقِم</div><div class="nc-en">AL-MUNTAQIM</div><div class="nc-me">The Avenger — punishes the unjust</div></div>
+      <div class="name-card"><div class="nc-num">83</div><div class="nc-ar">الْعَفُوّ</div><div class="nc-en">AL-AFUWW</div><div class="nc-me">The Pardoner — erases sins fully</div></div>
+      <div class="name-card"><div class="nc-num">84</div><div class="nc-ar">الرَّؤُوف</div><div class="nc-en">AR-RA'UF</div><div class="nc-me">The Compassionate — full of pity</div></div>
+      <div class="name-card"><div class="nc-num">85</div><div class="nc-ar">مَالِكُ الْمُلْك</div><div class="nc-en">MALIK AL-MULK</div><div class="nc-me">Owner of All — controls every kingdom</div></div>
+      <div class="name-card"><div class="nc-num">86</div><div class="nc-ar">ذُو الْجَلَالِ وَالْإِكْرَام</div><div class="nc-en">DHUL-JALAL WAL-IKRAM</div><div class="nc-me">Lord of Majesty and Honour</div></div>
+      <div class="name-card"><div class="nc-num">87</div><div class="nc-ar">الْمُقْسِط</div><div class="nc-en">AL-MUQSIT</div><div class="nc-me">The Equitable — deals with justice</div></div>
+      <div class="name-card"><div class="nc-num">88</div><div class="nc-ar">الْجَامِع</div><div class="nc-en">AL-JAMI'</div><div class="nc-me">The Gatherer — unites everything</div></div>
+      <div class="name-card"><div class="nc-num">89</div><div class="nc-ar">الْغَنِيّ</div><div class="nc-en">AL-GHANI</div><div class="nc-me">The Self-Sufficient — needs nothing</div></div>
+      <div class="name-card"><div class="nc-num">90</div><div class="nc-ar">الْمُغْنِي</div><div class="nc-en">AL-MUGHNI</div><div class="nc-me">The Enricher — frees from want</div></div>
+      <div class="name-card"><div class="nc-num">91</div><div class="nc-ar">الْمَانِع</div><div class="nc-en">AL-MANI'</div><div class="nc-me">The Preventer — withholds from harm</div></div>
+      <div class="name-card"><div class="nc-num">92</div><div class="nc-ar">الضَّارّ</div><div class="nc-en">AD-DARR</div><div class="nc-me">The Distresser — tests by hardship</div></div>
+      <div class="name-card"><div class="nc-num">93</div><div class="nc-ar">النَّافِع</div><div class="nc-en">AN-NAFI'</div><div class="nc-me">The Benefactor — brings all benefit</div></div>
+      <div class="name-card"><div class="nc-num">94</div><div class="nc-ar">النُّور</div><div class="nc-en">AN-NUR</div><div class="nc-me">The Light — illuminates hearts</div></div>
+      <div class="name-card"><div class="nc-num">95</div><div class="nc-ar">الْهَادِي</div><div class="nc-en">AL-HADI</div><div class="nc-me">The Guide — shows the right path</div></div>
+      <div class="name-card"><div class="nc-num">96</div><div class="nc-ar">الْبَدِيع</div><div class="nc-en">AL-BADI'</div><div class="nc-me">The Incomparable — unique creator</div></div>
+      <div class="name-card"><div class="nc-num">97</div><div class="nc-ar">الْبَاقِي</div><div class="nc-en">AL-BAQI</div><div class="nc-me">The Everlasting — never ends</div></div>
+      <div class="name-card"><div class="nc-num">98</div><div class="nc-ar">الْوَارِث</div><div class="nc-en">AL-WARITH</div><div class="nc-me">The Inheritor — possesses all after</div></div>
+      <div class="name-card"><div class="nc-num">99</div><div class="nc-ar">الرَّشِيد</div><div class="nc-en">AR-RASHID</div><div class="nc-me">The Guide to Right Path</div></div>
+    </div>
+    <div style="text-align:center;padding:10px 0 8px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1.5px;color:rgba(201,168,76,.6)">✦ Allahummah dini wa saddidni ✦</div>
+  </div>
+
+  <div style="height:16px"></div>
+
+</div>
+
+<!-- SADQA -->
+<div class="sec" id="sec-sadqa">
+  <section id="sadqa" class="sadqa-section">
+    <div class="sadqa-card">
+      <h3>✦ SADQA-E-JARIYA ✦</h3>
+      <p class="sadqa-title">
+        Created as <strong>Sadqa-e-Jariya</strong> by
+        <span class="author-name">Shoyeb Shaikh</span>
+      </p>
+
+      <p class="sadqa-desc">
+        May every prayer time viewed, every dua read, and every good deed inspired
+        through this app become a source of ongoing reward.
+      </p>
+
+      <p class="sadqa-dua arabic-line" lang="ar">
+        اللَّهُمَّ تَقَبَّلْهُ مِنَّا
+      </p>
+
+      <p class="sadqa-translation">
+        O Allah, accept this from us. Ameen.
+      </p>
+    </div>
+  </section>
+</div>
+
+</div></div>
+<div class="save-badge" id="save-badge">✓ SAVED</div>
+
+
+<!-- PWA SERVICE WORKER + INSTALL BANNER -->
+
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
