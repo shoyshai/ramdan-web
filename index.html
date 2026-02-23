@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ramadan Mubarak 2026 | India</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0e3b2f">
@@ -13,12 +13,12 @@
 <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Amiri:wght@400;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 <div class="page-wrap">
-<div class="page-card">
+<div class="page-card main-card app-canvas">
 <div class="app app-shell">
 <div class="stars-bg" id="stars"></div>
 <div class="content">
@@ -27,7 +27,7 @@
 <div class="alert alert-b hidden" id="alert-i">🌙 &nbsp;MUBARAK! IFTAR TIME HAS ARRIVED!</div>
 
 <!-- TABBAR -->
-<div class="tabbar">
+<div class="tabbar bottom-nav">
   <div class="tb on" id="tb-home" onclick="showTab('home')"><div class="tb-ic">🏠</div><div class="tb-tx">HOME</div></div>
   <div class="tb" id="tb-tools" onclick="showTab('tools')"><div class="tb-ic">🧮</div><div class="tb-tx">TOOLS</div></div>
   <div class="tb" id="tb-sched" onclick="showTab('sched')"><div class="tb-ic">📅</div><div class="tb-tx">SCHEDULE</div></div>
@@ -41,50 +41,40 @@
 <header class="hero">
   <div class="hero-top">
     <div>
-      <div class="hero-title">Ramadan Companion</div>
-      <div class="hero-sub">India · 1447 AH · 2026</div>
-      <div class="hero-by">Built by <strong>Shoyeb Shaikh</strong></div>
+      <div class="hero-title title">RAMADAN</div>
+      <div class="hero-sub meta">✦ RAMADAN 1447 AH · INDIA 2026 ✦</div>
+      <div class="hero-by byline">Built by <strong>Shoyeb Shaikh</strong></div>
     </div>
     <div class="hero-actions">
       <button id="installBtn" class="install-btn" type="button" hidden>Install App</button>
     </div>
   </div>
 
-  <div class="hero-arabic arabic-line" lang="ar">رَمَضَان مُبَارَك</div>
+  <div class="hero-arabic arabic-line arabic" lang="ar">رَمَضَان مُبَارَك</div>
   <div class="rule"></div>
 
-  <div class="hero-timing">
-    <div class="ht-box card" id="ht-sehri">
-      <div class="ht-lbl">SEHRI ENDS</div>
-      <div class="ht-time" id="hi-sh">--:--</div>
+  <div class="hero-timing timing-row">
+    <div class="ht-box card timing-card sehri" id="ht-sehri">
+      <div class="ht-lbl label timing-label">SEHRI ENDS</div>
+      <div class="ht-time time" id="hi-sh">--:--</div>
       <div class="ht-divider"></div>
       <div class="ht-st status upcoming" id="hi-sh-st">UPCOMING</div>
     </div>
-    <div class="ht-mid">
-      <div class="hero-moon-container">
-        <svg class="hero-moon" aria-hidden="true" role="img" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-          <title>Moon icon</title>
-          <desc>Crescent moon symbol for Ramadan hero</desc>
-          <defs>
-            <radialGradient id="moonGrad" cx="50%" cy="50%" r="60%">
-              <stop offset="0%" stop-color="var(--primary-green)" stop-opacity="0.85"/>
-              <stop offset="100%" stop-color="var(--panel2)" stop-opacity="0.25"/>
-            </radialGradient>
-          </defs>
-          <path d="M64 8 C36 8 12 32 12 60 C12 88 36 112 64 112 C92 112 116 88 116 60 C116 32 92 8 64 8 Z" fill="url(#moonGrad)" stroke="var(--primary-green)" stroke-width="6"/>
-        </svg>
-      </div>
-      <div class="ht-roza" id="hi-roza">-- ROZA</div>
-      <div class="ht-city"><span id="hi-city">PUNE</span></div>
+    <div class="ht-mid timing-center">
+      <div class="ht-moon">🌙</div>
+      <div class="ht-roza roza" id="hi-roza">-- ROZA</div>
+      <div class="ht-city city"><span class="pin">📍</span><span id="hi-city">PUNE</span></div>
+      <div class="weather"><span class="cloud">☁</span><span id="temp">--°C</span></div>
     </div>
-    <div class="ht-box card" id="ht-iftar">
-      <div class="ht-lbl">IFTAR TIME</div>
-      <div class="ht-time" id="hi-if">--:--</div>
+    <div class="ht-box card timing-card iftar" id="ht-iftar">
+      <div class="ht-lbl label timing-label">IFTAR TIME</div>
+      <div class="ht-time time" id="hi-if">--:--</div>
       <div class="ht-divider"></div>
       <div class="ht-st status upcoming" id="hi-if-st">UPCOMING</div>
     </div>
   </div>
 </header>
+  <div class="ornament-dots" aria-hidden="true">· · · · ✦ · · · ·</div>
 
   <h2 class="section-title">Today's Timings</h2>
   <div class="rule"></div>

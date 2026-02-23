@@ -62,6 +62,31 @@ function getBasePath(){
 const BASE = getBasePath();
 
 function h12(h,m){return`${h%12||12}:${String(m).padStart(2,"0")} ${h>=12?"PM":"AM"}`;}
+function pad2(n){return String(n).padStart(2,"0");}
+function h12Parts(h,m){
+  let hh=h%12||12;
+  const mm=pad2(m);
+  const ampm=h>=12?"PM":"AM";
+  return {hh:String(hh),mm,ampm};
+}
+function normalizeTimeString(t){
+  const parts=String(t||"").trim().split(":");
+  if(parts.length<2)return"";
+  const h=String(parseInt(parts[0],10));
+  const m=pad2(parseInt(parts[1],10));
+  if(Number.isNaN(parseInt(h,10))||Number.isNaN(parseInt(m,10)))return"";
+  return `${h}:${m}`;
+}
+function setTimeHTML(id,timeStr,ampm){
+  const el=$(id); if(!el) return;
+  const safeTime=normalizeTimeString(timeStr);
+  if(!safeTime){ el.textContent="--:--"; return; }
+  el.innerHTML=`<span class="time-main">${safeTime}</span><span class="time-ampm">${ampm||""}</span>`;
+  if(window.__TIME_DEBUG){
+    console.log(`[time] ${id} raw:`, timeStr, ampm);
+    console.log(`[time] ${id} rendered:`, el.textContent);
+  }
+}
 function rIdx(d){const t=new Date(d.getFullYear(),d.getMonth(),d.getDate());for(let i=0;i<RDATES.length;i++)if(RDATES[i].getTime()===t.getTime())return i;return-1;}
 function getTT(){const i=rIdx(new Date());if(i<0)return null;const sc=city.s[i];return{i,sh:sc[0],sm:sc[1],ih:sc[2],im:sc[3]};}
 function $(id){return document.getElementById(id);}
@@ -449,12 +474,15 @@ function tick(){
   const sS=sh*3600+sm*60,iS=ih*3600+im*60;
   const pastS=nowS>=sS,pastI=nowS>=iS;
 
-  setText("s-time",h12(sh,sm));setText("i-time",h12(ih,im));
+  const s12=h12Parts(sh,sm), i12=h12Parts(ih,im);
+  setTimeHTML("s-time",`${s12.hh}:${s12.mm}`,s12.ampm);
+  setTimeHTML("i-time",`${i12.hh}:${i12.mm}`,i12.ampm);
   $("s-st").textContent=pastS?"PASSED":"UPCOMING";$("s-st").className="stag "+(pastS?"tag-p":"tag-u");
   $("i-st").textContent=pastI?"PASSED":"UPCOMING";$("i-st").className="stag "+(pastI?"tag-p":"tag-u");
 
   // Hero info
-  setText("hi-sh",h12(sh,sm));setText("hi-if",h12(ih,im));
+  setTimeHTML("hi-sh",`${s12.hh}:${s12.mm}`,s12.ampm);
+  setTimeHTML("hi-if",`${i12.hh}:${i12.mm}`,i12.ampm);
   setText("hi-roza",ri>=0?`${ri+1}${["","ST","ND","RD"][ri+1]||"TH"} ROZA`:"-- ROZA");
   const shSt=$("hi-sh-st"),ifSt=$("hi-if-st");
   if(shSt){shSt.textContent=pastS?"PASSED":"UPCOMING";shSt.className="ht-st "+(pastS?"pa":"up");}
